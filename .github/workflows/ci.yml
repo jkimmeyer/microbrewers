@@ -20,3 +20,50 @@ jobs:
 
       - run: yarn --frozen-lockfile
       - run: yarn stylelint
+
+  zeitwerk:
+    name: Zeitwerk
+    runs-on: ubuntu-18.04
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+      - run: gem install bundler --no-document
+      - run: bundle install --without development test
+      - run: export $(grep -v '^#' .env.build | xargs) && bin/rails zeitwerk:check
+
+  brakeman:
+    name: Brakeman
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+
+      - run: gem install brakeman
+      - run: brakeman --run-all-checks --interprocedural --no-pager --exit-on-warn --exit-on-error --add-libs-path app
+
+  bundle_audit:
+    name: Bundle Audit
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+
+      - run: gem install bundler-audit
+      - run: bundle audit check --update
+
+  ruby_audit:
+    name: Ruby Audit
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+
+      - run: gem install ruby_audit
+      - run: bin/ruby-audit
