@@ -25,6 +25,7 @@ jobs:
     name: Yarn Eslint
     runs-on: ubuntu-18.04
 
+    steps:
       - name: checkout-repo
         uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -40,6 +41,7 @@ jobs:
   zeitwerk:
     name: Zeitwerk
     runs-on: ubuntu-18.04
+
     steps:
       - name: checkout-repo
         uses: actions/checkout@v2
@@ -63,7 +65,8 @@ jobs:
   ruby_audit:
     name: Ruby Audit
     runs-on: ubuntu-18.04
-      steps:
+
+    steps:
       - name: checkout-repo
         uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
@@ -71,12 +74,26 @@ jobs:
       - run: gem install ruby_audit
       - run: bin/ruby-audit
 
-        bundle_audit:
+  bundle_audit:
     name: Bundle Audit
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+      - run: gem install bundler-audit
+      - run: bundle audit check --update
+
+  rufo-and-rubocop:
+    name: Rufo and Rubocop
+    runs-on: ubuntu-18.04
+
     steps:
       - name: checkout-repo
         uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
 
-      - run: gem install bundler-audit
-      - run: bundle audit check --update
+      - run: gem install bundle-only
+      - run: bundle-only linting
+      - run: rubocop -P
