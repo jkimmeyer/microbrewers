@@ -48,7 +48,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
       - run: gem install bundler --no-document
-      - run: bundle install --without development test
+      - run: bundle install
       - run: export $(grep -v '^#' .env.build | xargs) && bin/rails zeitwerk:check
 
   brakeman:
