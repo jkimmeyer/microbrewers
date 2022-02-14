@@ -20,3 +20,20 @@ jobs:
 
       - run: yarn --frozen-lockfile
       - run: yarn stylelint
+
+  yarn_eslint:
+    name: Yarn Eslint
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - run: curl -o- -L https://yarnpkg.com/install.sh | bash
+      - run: export PATH="$HOME/.yarn/bin:$PATH"
+
+      - run: yarn --frozen-lockfile
+      - run: yarn eslint --max-warnings=0
