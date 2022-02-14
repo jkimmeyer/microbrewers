@@ -16,6 +16,6 @@ export default {
 
 <style scoped>
 button {
-  font-weight: bold;
+  display: block;
 }
 </style>
