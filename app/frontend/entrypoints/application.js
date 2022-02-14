@@ -6,6 +6,7 @@ import Index from '../pages/index.vue';
 //
 //    <%= vite_client_tag %>
 //    <%= vite_javascript_tag 'application' %>
+// eslint-disable-next-line no-console
 console.log('Vite ⚡️ Rails');
 
 // If using a TypeScript entrypoint file:
@@ -14,6 +15,7 @@ console.log('Vite ⚡️ Rails');
 // If you want to use .jsx or .tsx, add the extension:
 //     <%= vite_javascript_tag 'application.jsx' %>
 
+// eslint-disable-next-line no-console
 console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails');
 
 createApp(Index).mount('#app');
