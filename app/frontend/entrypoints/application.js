@@ -1,3 +1,6 @@
+import { createApp } from 'vue'
+import Index from '../pages/index.vue'
+
 // To see this message, add the following to the `<head>` section in your
 // views/layouts/application.html.erb
 //
@@ -13,6 +16,9 @@ console.log('Vite ⚡️ Rails')
 
 console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
 
+
+
+createApp(Index).mount('#app')
 // Example: Load Rails libraries in Vite.
 //
 // import * as Turbo from '@hotwired/turbo'
