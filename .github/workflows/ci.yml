@@ -37,3 +37,16 @@ jobs:
 
       - run: yarn --frozen-lockfile
       - run: yarn eslint --max-warnings=0
+
+  rufo-and-rubocop:
+    name: Rufo and Rubocop
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+
+      - run: gem install bundle-only
+      - run: bundle-only linting
+      - run: rubocop -P
