@@ -1,12 +1,13 @@
-import { createApp } from 'vue'
-import Index from '../pages/index.vue'
+import { createApp } from 'vue';
+import Index from '../pages/index.vue';
 
 // To see this message, add the following to the `<head>` section in your
 // views/layouts/application.html.erb
 //
 //    <%= vite_client_tag %>
 //    <%= vite_javascript_tag 'application' %>
-console.log('Vite ⚡️ Rails')
+// eslint-disable-next-line no-console
+console.log('Vite ⚡️ Rails');
 
 // If using a TypeScript entrypoint file:
 //     <%= vite_typescript_tag 'application' %>
@@ -14,11 +15,10 @@ console.log('Vite ⚡️ Rails')
 // If you want to use .jsx or .tsx, add the extension:
 //     <%= vite_javascript_tag 'application.jsx' %>
 
-console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
+// eslint-disable-next-line no-console
+console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails');
 
-
-
-createApp(Index).mount('#app')
+createApp(Index).mount('#app');
 // Example: Load Rails libraries in Vite.
 //
 // import * as Turbo from '@hotwired/turbo'
