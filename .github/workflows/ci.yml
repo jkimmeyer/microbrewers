@@ -21,6 +21,22 @@ jobs:
       - run: yarn --frozen-lockfile
       - run: yarn stylelint
 
+  yarn_eslint:
+    name: Yarn Eslint
+    runs-on: ubuntu-18.04
+
+      - name: checkout-repo
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - run: curl -o- -L https://yarnpkg.com/install.sh | bash
+      - run: export PATH="$HOME/.yarn/bin:$PATH"
+
+      - run: yarn --frozen-lockfile
+      - run: yarn eslint --max-warnings=0
+
   zeitwerk:
     name: Zeitwerk
     runs-on: ubuntu-18.04
@@ -44,10 +60,19 @@ jobs:
       - run: gem install brakeman
       - run: brakeman --run-all-checks --interprocedural --no-pager --exit-on-warn --exit-on-error --add-libs-path app
 
-  bundle_audit:
-    name: Bundle Audit
+  ruby_audit:
+    name: Ruby Audit
     runs-on: ubuntu-18.04
+      steps:
+      - name: checkout-repo
+        uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
 
+      - run: gem install ruby_audit
+      - run: bin/ruby-audit
+
+        bundle_audit:
+    name: Bundle Audit
     steps:
       - name: checkout-repo
         uses: actions/checkout@v2
@@ -55,15 +80,3 @@ jobs:
 
       - run: gem install bundler-audit
       - run: bundle audit check --update
-
-  ruby_audit:
-    name: Ruby Audit
-    runs-on: ubuntu-18.04
-
-    steps:
-      - name: checkout-repo
-        uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-
-      - run: gem install ruby_audit
-      - run: bin/ruby-audit
