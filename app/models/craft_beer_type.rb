@@ -1,0 +1,2 @@
+class CraftBeerType < ApplicationRecord
+end
