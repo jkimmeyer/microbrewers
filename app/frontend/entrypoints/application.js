@@ -1,5 +1,7 @@
 import { createApp } from 'vue';
 import * as VueRouter from 'vue-router';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
 import App from '../App.vue';
 import Index from '../pages/index.vue';
@@ -18,5 +20,6 @@ const router = VueRouter.createRouter({
 document.addEventListener('DOMContentLoaded', () => {
   const app = createApp(App);
   app.use(router);
+  app.use(VueAxios, axios);
   app.mount('#app');
 });
