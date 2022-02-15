@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_15_075206) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_15_091611) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,6 +31,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_15_075206) do
     t.string "hop"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "craft_beer_type_id"
+    t.index ["craft_beer_type_id"], name: "index_craft_beers_on_craft_beer_type_id"
   end
 
+  add_foreign_key "craft_beers", "craft_beer_types"
 end
