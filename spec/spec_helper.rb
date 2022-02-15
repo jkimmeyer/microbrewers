@@ -4,7 +4,11 @@ require "webmock/rspec"
 require "webdrivers"
 require "debug"
 
-WebMock.disable_net_connect!(allow_localhost: true, allow: Webdrivers::Chromedriver.base_url)
+WebMock.disable_net_connect!(
+  allow_localhost: true,
+  allow: Webdrivers::Chromedriver.base_url,
+  net_http_connect_on_start: true,
+)
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
