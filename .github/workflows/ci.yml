@@ -38,9 +38,57 @@ jobs:
       - run: yarn --frozen-lockfile
       - run: yarn eslint --max-warnings=0
 
+  zeitwerk:
+    name: Zeitwerk
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby@v1
+      - run: gem install bundler --no-document
+      - run: bundle install
+      - run: export $(grep -v '^#' .env.build | xargs) && bin/rails zeitwerk:check
+
+  brakeman:
+    name: Brakeman
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+
+      - run: gem install brakeman
+      - run: brakeman --run-all-checks --interprocedural --no-pager --exit-on-warn --exit-on-error --add-libs-path app
+
+  ruby_audit:
+    name: Ruby Audit
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+
+      - run: gem install ruby_audit
+      - run: bin/ruby-audit
+
+  bundle_audit:
+    name: Bundle Audit
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+      - run: gem install bundler-audit
+      - run: bundle audit check --update
+
   rufo-and-rubocop:
     name: Rufo and Rubocop
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
       - name: checkout-repo
