@@ -1,6 +1,9 @@
 name: Continuous Integration
 on: push
 env:
+  CAPYBARA_BROWSER_ARGS: "--no-sandbox --disable-dev-shm-usage"
+  RAILS_ENV: test
+  RACK_ENV: test
   NODE_VERSION: "17.1.0"
 
 jobs:
@@ -50,3 +53,20 @@ jobs:
       - run: gem install bundle-only
       - run: bundle-only linting
       - run: rubocop -P
+
+  rspec:
+    name: RSpec
+    runs-on: ubuntu-18.04
+    services:
+      postgres:
+        image: postgres:13-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: microbrewers
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+      chrome:
+        image: browserless/chrome
+        ports:
+          - 3000:3000
