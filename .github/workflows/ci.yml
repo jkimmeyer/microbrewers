@@ -89,8 +89,8 @@ jobs:
       - run: gem install bundler-audit
       - run: bundle audit check --update
 
-  rufo-and-rubocop:
-    name: Rufo and Rubocop
+  rubocop:
+    name: Rubocop
     runs-on: ubuntu-18.04
 
     steps:
