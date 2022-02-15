@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   def index
-    render inline: "", layout: "application" # Avoid having an empty view file.
+    # rubocop:disable Rails/RenderInline
+    render inline: "", layout: "application"
+    # rubocop:enable Rails/RenderInline
   end
 end
