@@ -11,7 +11,6 @@ gem "rails", "~> 7.0.2"
 gem "tzinfo-data"
 gem "vite_rails", "~> 3.0"
 
-
 group :development, :test do
   gem "debug"
 end
@@ -29,9 +28,9 @@ end
 
 group :test do
   gem "capybara"
+  gem "faker"
   gem "selenium-webdriver"
   gem "webdrivers"
-  gem "faker"
   gem "webmock"
 end
 
