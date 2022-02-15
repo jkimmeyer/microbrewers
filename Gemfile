@@ -9,6 +9,7 @@ gem "pg"
 gem "puma"
 gem "rails", "~> 7.0.2"
 gem "tzinfo-data"
+gem "vite_rails", "~> 3.0"
 
 group :development, :test do
   gem "debug"
@@ -18,10 +19,19 @@ group :development do
   gem "web-console"
 end
 
+# Testing
+group :development, :test do
+  gem "factory_bot_rails"
+  gem "rspec"
+  gem "rspec-rails"
+end
+
 group :test do
   gem "capybara"
+  gem "faker"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "webmock"
 end
 
 group :development, :linting do
@@ -29,5 +39,3 @@ group :development, :linting do
   gem "rubocop-performance"
   gem "rubocop-rails"
 end
-
-gem "vite_rails", "~> 3.0"
