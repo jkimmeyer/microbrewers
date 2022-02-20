@@ -1,13 +1,19 @@
 module Api
   module V1
     class CraftBeersController < Api::ApplicationController
+      def index
+        @craft_beers = CraftBeer.all
+
+        render json: @craft_beers
+      end
+
       def create
         @craft_beer = CraftBeer.new(craft_beer_params)
 
         if @craft_beer.save
           render json: @craft_beer
         else
-          render json: { errors: @craft_beer.errors }
+          render json: { errors: @craft_beer.errors }, status: :not_acceptable
         end
       end
 

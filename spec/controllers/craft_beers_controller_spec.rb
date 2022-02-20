@@ -39,4 +39,20 @@ RSpec.describe Api::V1::CraftBeersController do
       end
     end
   end
+
+  describe "GET index" do
+    let!(:craft_beers) { create_list(:craft_beer, 2) }
+
+    it "returns a json array" do
+      get :index
+      expect(response.content_type).to eq "application/json; charset=utf-8"
+      expect(JSON.parse(response.body)).to be_an Array
+    end
+
+    it "returns two craft beers" do
+      get :index
+      expect(JSON.parse(response.body).size).to eq 2
+      expect(response.body).to eq craft_beers.to_json
+    end
+  end
 end
