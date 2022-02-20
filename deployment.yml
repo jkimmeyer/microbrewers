@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
       - name: microbrewers
-        image: registry.digitalocean.com/microbrewers/microbrewers
+        image: registry.digitalocean.com/microbrewers/microbrewers:latest
         ports:
           - name: web
             protocol: TCP

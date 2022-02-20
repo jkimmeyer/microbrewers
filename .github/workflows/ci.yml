@@ -164,4 +164,4 @@ jobs:
     - name: Rspec
       run: bin/rspec spec
       env:
-        DATABASE_URL: postgresql://microbrewers:password@localhost/
+        DATABASE_URL: postgresql://localhost/
