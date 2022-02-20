@@ -16,7 +16,7 @@ RSpec.describe "Create Craft Beer", js: true do
   end
 
   context "with a valid craft beer" do
-    let(:craft_beer) { build :craft_beer }
+    let(:craft_beer) { build :craft_beer, :with_all_information }
 
     it "creates a craft beer successfully" do
       visit "/#/craft_beers/new"
@@ -30,7 +30,7 @@ RSpec.describe "Create Craft Beer", js: true do
       fill_in "input-color", with: craft_beer.color
       select "MyString", from: "Craft Beer Type"
       expect { click_on "Craft Bier hinzufügen" }.to change { CraftBeer.count }.from(0).to(1)
-      expect(CraftBeer.find_by(name: craft_beer.name).attributes).to include craft_beer.attributes
+      expect(CraftBeer.find_by(name: craft_beer.name).attributes).to include craft_beer.attributes.without("id", "craft_beer_type_id", "created_at", "updated_at")
     end
   end
 
@@ -47,8 +47,7 @@ RSpec.describe "Create Craft Beer", js: true do
       fill_in "input-price", with: invalid_craft_beer.price
       fill_in "input-flavor", with: invalid_craft_beer.flavor
       fill_in "input-color", with: invalid_craft_beer.color
-      select "MyString", from: "Craft Beer Type"
-      expect { click_on "Craft Bier hinzufügen" }.to change { CraftBeer.count }.from(0).to(1)
+      expect { click_on "Craft Bier hinzufügen" }.not_to(change { CraftBeer.count })
     end
   end
 end

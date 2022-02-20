@@ -31,7 +31,7 @@
       >
         <input
           id="input-hops"
-          v-model="craftBeer.hops"
+          v-model="craftBeer.hop"
           type="text"
         >
       </InputField>
@@ -42,7 +42,7 @@
       >
         <input
           id="input-ibu"
-          v-model="craftBeer.internationalBitternesUnit"
+          v-model="craftBeer.international_bitterness_unit"
           type="number"
         >
       </InputField>
@@ -53,7 +53,7 @@
       >
         <input
           id="input-vol"
-          v-model="craftBeer.alcoholVolume"
+          v-model="craftBeer.alcohol_volume"
           type="number"
           step=".1"
         >
@@ -132,6 +132,11 @@
 <script>
 import InputField from '../../components/InputField.vue';
 
+function removeEmpty(obj) {
+  // eslint-disable-next-line no-unused-vars
+  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null && v !== ''));
+}
+
 export default {
   name: 'CraftBeerNew',
   components: {
@@ -140,15 +145,15 @@ export default {
   data() {
     return {
       craftBeer: {
-        name: '',
-        description: '',
-        hops: '',
-        internationalBitternesUnit: 0,
-        alcoholVolume: 0.0,
-        price: 0.0,
-        flavor: '',
-        color: '',
-        craft_beer_type_id: '',
+        name: null,
+        description: null,
+        hop: null,
+        international_bitternes_unit: null,
+        alcohol_volume: null,
+        price: null,
+        flavor: null,
+        color: null,
+        craft_beer_type_id: null,
       },
       craftBeerTypes: [],
       errors: [],
@@ -164,7 +169,7 @@ export default {
   methods: {
     createCraftBeer() {
       this.axios
-        .post('/api/v1/craft_beers', this.$data.craftBeer)
+        .post('/api/v1/craft_beers', { craft_beer: removeEmpty(this.$data.craftBeer) })
         .catch((error) => {
           this.errors = error.response.data;
           // eslint-disable-next-line no-console
