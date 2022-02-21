@@ -60,6 +60,11 @@ ENV RAILS_ENV=${RAILS_ENV:-production}
 ARG GIT_REV
 ENV GIT_REV=${GIT_REV:-unknown}
 ARG BUNDLE_WITHOUT="development test"
+ENV RAILS_ENVIRONMENT=production
+ENV RAILS_SERVE_STATIC_FILES=true
+ENV RAILS_LOG_TO_STDOUT=enabeld
+ENV SECRET_KEY_BASE=8efd47831ad2a91195100d14a8b20df7e1d3427fa2f57fa1855a59fb2c499ef440fff870e3bc586eeba2f4ec4a1f8b348dcd1486168dafa1140ed4cc0f2f05be
+
 
 # bundle install ('deployment' here means bundling to vendor/bundle and erroring out when Gemfile.lock would change)
 COPY --chown=nonroot Gemfile Gemfile.lock ./

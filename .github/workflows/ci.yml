@@ -1,7 +1,7 @@
 name: Continuous Integration
 on: push
 env:
-  CAPYBARA_BROWSER_ARGS: "--no-sandbox --disable-dev-shm-usage"
+  CAPYBARA_BROWSER_ARGS: "--no-sandbox --disable-dev-shm-usage --headless --window-size=1440,1000"
   RAILS_ENV: test
   RACK_ENV: test
   NODE_VERSION: "17.1.0"
@@ -89,8 +89,8 @@ jobs:
       - run: gem install bundler-audit
       - run: bundle audit check --update
 
-  rufo-and-rubocop:
-    name: Rufo and Rubocop
+  rubocop:
+    name: Rubocop
     runs-on: ubuntu-18.04
 
     steps:

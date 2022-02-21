@@ -28,10 +28,15 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system, js: true) do
-    browser = ENV.fetch("CAPYBARA_BROWSER", "headless_chrome").to_sym
-    args = ENV.fetch("CAPYBARA_BROWSER_ARGS", "")
-    options = args.present? ? { args: args.split } : {}
+    browser = ENV.fetch("CAPYBARA_BROWSER", "chrome").to_sym
+    args = ENV.fetch("CAPYBARA_BROWSER_ARGS", "headless window-size=1440,1000")
 
-    driven_by :selenium, using: browser, options: options
+    Capybara.register_driver browser do |app|
+      options = Selenium::WebDriver::Chrome::Options.new(args: args.split)
+      options.add_preference "download.default_directory", "tmp/downloads/"
+      Capybara::Selenium::Driver.new(app, browser: browser, capabilities: options)
+    end
+
+    driven_by(browser)
   end
 end
