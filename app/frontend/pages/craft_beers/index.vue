@@ -15,6 +15,9 @@
 
 <script>
 import CraftBeerView from '../../components/CraftBeerView.vue';
+import Repository from '../../repositories/index';
+
+const CraftBeerRepository = Repository.get('craftBeer');
 
 export default {
   name: 'CraftBeersIndex',
@@ -27,8 +30,7 @@ export default {
     };
   },
   mounted() {
-    this.axios
-      .get('/api/v1/craft_beers')
+    CraftBeerRepository.get()
       .then((response) => {
         this.craftBeers = response.data;
       });
