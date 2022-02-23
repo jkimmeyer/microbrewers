@@ -8,6 +8,8 @@ import Index from '../pages/index.vue';
 import CraftBeersNew from '../pages/craft_beers/new.vue';
 import CraftBeersIndex from '../pages/craft_beers/index.vue';
 
+import '../assets/index.css';
+
 const routes = [
   { path: '/', component: Index },
   { path: '/craft_beers/new/', component: CraftBeersNew },

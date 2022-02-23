@@ -23,7 +23,18 @@
         "at-rule-name-case": "lower",
         "at-rule-name-newline-after": null,
         "at-rule-name-space-after": "always",
-        "at-rule-no-unknown": null,
+        "at-rule-no-unknown": [
+          true,
+          {
+            "ignoreAtRules": [
+              "tailwind",
+              "apply",
+              "variants",
+              "responsive",
+              "screen"
+            ]
+          }
+        ],
         "at-rule-no-vendor-prefix": true,
         "at-rule-property-required-list": null,
         "at-rule-semicolon-newline-after": "always",
@@ -67,9 +78,9 @@
         "declaration-block-semicolon-newline-after": "always",
         "declaration-block-semicolon-newline-before": "never-multi-line",
         "declaration-block-semicolon-space-after": "always-single-line",
+        "declaration-block-trailing-semicolon": "always",
         "declaration-block-semicolon-space-before": "never",
         "declaration-block-single-line-max-declarations": 1,
-        "declaration-block-trailing-semicolon": "always",
         "declaration-colon-newline-after": null,
         "declaration-colon-space-after": "always",
         "declaration-colon-space-before": "never",
