@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(File.join(__dir__, ".tool-versions")).match(/(?<=ruby)(.*)/).captures.first.strip
 
+gem "aws-sdk-s3"
 gem "bootsnap"
 gem "jbuilder"
 gem "pg"
@@ -10,7 +11,6 @@ gem "puma"
 gem "rails", "~> 7.0.2"
 gem "tzinfo-data"
 gem "vite_rails", "~> 3.0"
-gem "aws-sdk-s3"
 
 group :development, :test do
   gem "debug"

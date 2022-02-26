@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe Api::V1::CraftBeersController do
   describe "POST /api/v1/craft_beers/create" do
-
     context "with valid attributes" do
       subject { post :create, params: craft_beer }
 
@@ -56,7 +55,7 @@ RSpec.describe Api::V1::CraftBeersController do
   end
 
   describe "GET /api/v1/craft_beers" do
-    subject { get :index}
+    subject { get :index }
     let!(:craft_beers) { create_list(:craft_beer, 2) }
 
     it "returns a json array" do
