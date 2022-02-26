@@ -15,6 +15,18 @@
       </InputField>
 
       <InputField
+        label="Craft Beer Image"
+        input-id="craft-beer-image"
+      >
+        <input
+          id="craft-beer-image"
+          required
+          type="file"
+          @change="handleFileUpload($event)"
+        >
+      </InputField>
+
+      <InputField
         label="Description"
         input-id="input-description"
       >
@@ -148,6 +160,7 @@ export default {
         name: null,
         description: null,
         hop: null,
+        craft_beer_image: null,
         international_bitternes_unit: null,
         alcohol_volume: null,
         price: null,
@@ -168,13 +181,33 @@ export default {
   },
   methods: {
     createCraftBeer() {
+      const formData = new FormData();
+      const craftBeer = removeEmpty(this.$data.craftBeer);
+
+      Object.keys(craftBeer).forEach((key) => {
+        formData.append(`craft_beer[${key}]`, craftBeer[key]);
+      });
+
+      formData.append('craft_beer[craft_beer_image]', this.craft_beer_image);
+
       this.axios
-        .post('/api/v1/craft_beers', { craft_beer: removeEmpty(this.$data.craftBeer) })
+        .post(
+          '/api/v1/craft_beers',
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          },
+        )
         .catch((error) => {
           this.errors = error.response.data;
           // eslint-disable-next-line no-console
           console.log(error);
         });
+    },
+    handleFileUpload(event) {
+      [this.craft_beer_image] = event.target.files;
     },
   },
 };

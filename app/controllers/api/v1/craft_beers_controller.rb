@@ -20,17 +20,18 @@ module Api
       private
 
       def craft_beer_params
-        params.require(:craft_beer).permit(%i[
-                                             name
-                                             description
-                                             international_bitterness_unit
-                                             alcohol_volume
-                                             price
-                                             flavor
-                                             color
-                                             hop
-                                             craft_beer_type_id
-                                           ])
+        params.require(:craft_beer).permit(
+          :name,
+          :craft_beer_image,
+          :description,
+          :international_bitterness_unit,
+          :alcohol_volume,
+          :price,
+          :flavor,
+          :color,
+          :hop,
+          :craft_beer_type_id,
+        )
       end
     end
   end
