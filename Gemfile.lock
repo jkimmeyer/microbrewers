@@ -108,6 +108,10 @@ GEM
       reline (>= 0.2.7)
     diff-lcs (1.5.0)
     digest (3.1.0)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     dry-cli (0.7.0)
     erubi (1.10.0)
     factory_bot (6.2.0)
@@ -292,6 +296,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  dotenv-rails
   factory_bot_rails
   faker
   jbuilder
