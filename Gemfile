@@ -10,6 +10,7 @@ gem "puma"
 gem "rails", "~> 7.0.2"
 gem "tzinfo-data"
 gem "vite_rails", "~> 3.0"
+gem "aws-sdk-s3"
 
 group :development, :test do
   gem "debug"
