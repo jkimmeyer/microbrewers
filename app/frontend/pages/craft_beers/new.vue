@@ -20,7 +20,6 @@
       >
         <input
           id="craft-beer-image"
-          required
           type="file"
           @change="handleFileUpload($event)"
         >
@@ -188,7 +187,9 @@ export default {
         formData.append(`craft_beer[${key}]`, craftBeer[key]);
       });
 
-      formData.append('craft_beer[craft_beer_image]', this.craft_beer_image);
+      if (this.craft_beer_image) {
+        formData.append('craft_beer[craft_beer_image]', this.craft_beer_image);
+      }
 
       this.axios
         .post(
