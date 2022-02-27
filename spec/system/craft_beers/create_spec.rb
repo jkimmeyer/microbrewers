@@ -5,15 +5,15 @@ RSpec.describe "Create Craft Beer", js: true do
 
   it "renders a craft beer form" do
     visit "/#/craft_beers/new"
-    expect(page).to have_content "Add a new craft beer"
+    expect(page).to have_content "Erstelle ein neues Craft Bier!"
     expect(page).to have_field("Name", with: "")
-    expect(page).to have_field("Hops", with: "")
-    expect(page).to have_field("Description", with: "")
+    expect(page).to have_field("Hopfen", with: "")
+    expect(page).to have_field("Beschreibung", with: "")
   end
 
   it "shows all craft_beer_types" do
     visit "/#/craft_beers/new"
-    expect(page).to have_select("Craft Beer Type", options: [craft_beer_types.name])
+    expect(page).to have_select("Kategorie", options: [craft_beer_types.name])
   end
 
   context "with a valid craft beer" do
@@ -31,7 +31,7 @@ RSpec.describe "Create Craft Beer", js: true do
       fill_in "input-price", with: craft_beer.price
       fill_in "input-flavor", with: craft_beer.flavor
       fill_in "input-color", with: craft_beer.color
-      select "MyString", from: "Craft Beer Type"
+      select "MyString", from: "Kategorie"
 
       expect { subject }.to change { CraftBeer.count }.from(0).to(1)
         .and change { ActiveStorage::Blob.count }.from(0).to(1)
