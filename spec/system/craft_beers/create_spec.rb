@@ -23,7 +23,7 @@ RSpec.describe "Create Craft Beer", js: true do
     it "creates a craft beer successfully" do
       visit "/#/craft_beers/new"
       fill_in "input-name", with: craft_beer.name
-      attach_file("input-craft-beer-image", Rails.root.join("spec", "fixtures", "files", "brut-ale.png"))
+      attach_file("input-craft-beer-image", Rails.root.join("spec/fixtures/files/brut-ale.png"))
       fill_in "input-description", with: craft_beer.description
       fill_in "input-hops", with: craft_beer.hop
       fill_in "input-ibu", with: craft_beer.international_bitterness_unit
