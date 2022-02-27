@@ -142,11 +142,10 @@
 
 <script>
 import InputField from '../../components/InputField.vue';
+import Repository from '../../repositories/index';
 
-function removeEmpty(obj) {
-  // eslint-disable-next-line no-unused-vars
-  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null && v !== ''));
-}
+const CraftBeerRepository = Repository.get('craftBeer');
+const CraftBeerTypeRepository = Repository.get('craftBeerType');
 
 export default {
   name: 'CraftBeerNew',
@@ -172,35 +171,18 @@ export default {
     };
   },
   mounted() {
-    this.axios
-      .get('/api/v1/craft_beer_types')
+    CraftBeerTypeRepository.get()
       .then((response) => {
         this.craftBeerTypes = response.data;
       });
   },
   methods: {
     createCraftBeer() {
-      const formData = new FormData();
-      const craftBeer = removeEmpty(this.craftBeer);
-
-      Object.keys(craftBeer).forEach((key) => {
-        formData.append(`craft_beer[${key}]`, craftBeer[key]);
-      });
-
-      if (this.craftBeer.craft_beer_image) {
-        formData.append('craft_beer[craft_beer_image]', this.craftBeer.craft_beer_image);
-      }
-
-      this.axios
-        .post(
-          '/api/v1/craft_beers',
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          },
-        )
+      CraftBeerRepository.create(this.craftBeer)
+        .then((response) => {
+          // eslint-disable-next-line no-console
+          console.log(response);
+        })
         .catch((error) => {
           this.errors = error.response.data;
           // eslint-disable-next-line no-console
