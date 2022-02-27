@@ -9,6 +9,8 @@ import App from '@/App.vue';
 import Index from '@/pages/index.vue';
 import CraftBeersNew from '@/pages/craft_beers/new.vue';
 import CraftBeersIndex from '@/pages/craft_beers/index.vue';
+import UsersLogin from '@/pages/users/login.vue';
+import UsersRegistration from '@/pages/users/registration.vue';
 
 import '@/assets/index.css';
 
@@ -16,6 +18,8 @@ const routes = [
   { path: '/', component: Index },
   { path: '/craft_beers/new/', component: CraftBeersNew },
   { path: '/craft_beers', component: CraftBeersIndex },
+  { path: '/users/login', component: UsersLogin },
+  { path: '/users/registration', component: UsersRegistration },
 ];
 
 const router = VueRouter.createRouter({
