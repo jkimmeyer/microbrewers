@@ -6,6 +6,10 @@
     >
       {{ key + ': ' + value }}
     </div>
+    <img
+      :src="craftBeer.image_url"
+      width="50"
+    >
   </div>
 </template>
 

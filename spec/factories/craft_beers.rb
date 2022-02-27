@@ -12,5 +12,9 @@ FactoryBot.define do
       color { "golden" }
       flavor { "orange, banana, radler" }
     end
+
+    trait(:with_image) do
+      craft_beer_image { Rack::Test::UploadedFile.new(Rails.root.join("spec/fixtures/files/brut-ale.png")) }
+    end
   end
 end

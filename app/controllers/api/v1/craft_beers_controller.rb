@@ -2,9 +2,9 @@ module Api
   module V1
     class CraftBeersController < Api::ApplicationController
       def index
-        @craft_beers = CraftBeer.all
+        @craft_beers = CraftBeer.all.with_attached_craft_beer_image
 
-        render json: @craft_beers
+        render json: craft_beers_as_json(@craft_beers)
       end
 
       def create
@@ -32,6 +32,18 @@ module Api
           :hop,
           :craft_beer_type_id,
         )
+      end
+
+      def craft_beers_as_json(craft_beers)
+        craft_beers.map do |craft_beer|
+          craft_beer.as_json.merge(
+            image_url: craft_beer_image_url(craft_beer),
+          )
+        end
+      end
+
+      def craft_beer_image_url(craft_beer)
+        url_for(craft_beer&.craft_beer_image) if craft_beer.craft_beer_image.attached?
       end
     end
   end

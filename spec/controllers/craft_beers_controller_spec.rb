@@ -56,18 +56,30 @@ RSpec.describe Api::V1::CraftBeersController do
 
   describe "GET /api/v1/craft_beers" do
     subject { get :index }
-    let!(:craft_beers) { create_list(:craft_beer, 2) }
 
-    it "returns a json array" do
-      subject
-      expect(response.content_type).to eq "application/json; charset=utf-8"
-      expect(JSON.parse(response.body)).to be_an Array
+    context "without attachment" do
+      let!(:craft_beers) { create_list(:craft_beer, 2) }
+
+      it "returns a json array" do
+        subject
+        expect(response.content_type).to eq "application/json; charset=utf-8"
+        expect(JSON.parse(response.body)).to be_an Array
+      end
+
+      it "returns two craft beers" do
+        subject
+        expect(JSON.parse(response.body).size).to eq 2
+        expect(response.body).to eq(craft_beers.map { |craft_beer| craft_beer.attributes.merge(image_url: nil) }.to_json)
+      end
     end
 
-    it "returns two craft beers" do
-      subject
-      expect(JSON.parse(response.body).size).to eq 2
-      expect(response.body).to eq craft_beers.to_json
+    context "with attachment" do
+      let!(:craft_beer) { create(:craft_beer, :with_image) }
+
+      it "contains an attachment url" do
+        subject
+        expect(JSON.parse(response.body)[0]["image_url"]).not_to be nil
+      end
     end
   end
 end
