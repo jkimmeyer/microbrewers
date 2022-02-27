@@ -12,22 +12,49 @@ RSpec.describe Api::V1::CraftBeersController do
 
       let(:craft_beer_image) { fixture_file_upload("brut-ale.png") }
 
-      it "returns a JSON response" do
-        subject
-        expect(response.content_type).to eq "application/json; charset=utf-8"
+      context "when not logged in" do
+        it "returns a JSON response" do
+          subject
+          expect(response.content_type).to eq "application/json; charset=utf-8"
+        end
+
+        it "raises an authentication error" do
+          subject
+          expect(response).to have_http_status 401
+        end
       end
 
-      it "creates a craft beer" do
-        expect { subject }.to change { CraftBeer.count }.from(0).to(1)
-      end
+      context "when logged in" do
+        before(:each) do
+          # User is logged in
+        end
 
-      it "creates a blob " do
-        expect { subject }.to change { ActiveStorage::Blob.count }.from(0).to(1)
+        it "returns a JSON response" do
+          subject
+          expect(response.content_type).to eq "application/json; charset=utf-8"
+        end
+
+        it "performs a successful request" do
+          subject
+          expect(response).to have_http_status 200
+        end
+
+        it "creates a craft beer" do
+          expect { subject }.to change { CraftBeer.count }.from(0).to(1)
+        end
+
+        it "creates a blob " do
+          expect { subject }.to change { ActiveStorage::Blob.count }.from(0).to(1)
+        end
       end
     end
 
     context "with invalid attributes" do
       subject { post :create, params: invalid_craft_beer }
+
+      before(:each) do
+        # Log in user
+      end
 
       let(:invalid_craft_beer) do
         { craft_beer: { name: "Holunder-Bier" } }
