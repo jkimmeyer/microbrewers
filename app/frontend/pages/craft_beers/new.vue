@@ -181,14 +181,14 @@ export default {
   methods: {
     createCraftBeer() {
       const formData = new FormData();
-      const craftBeer = removeEmpty(this.$data.craftBeer);
+      const craftBeer = removeEmpty(this.craftBeer);
 
       Object.keys(craftBeer).forEach((key) => {
         formData.append(`craft_beer[${key}]`, craftBeer[key]);
       });
 
-      if (this.craft_beer_image) {
-        formData.append('craft_beer[craft_beer_image]', this.craft_beer_image);
+      if (this.craftBeer.craft_beer_image) {
+        formData.append('craft_beer[craft_beer_image]', this.craftBeer.craft_beer_image);
       }
 
       this.axios
@@ -208,7 +208,7 @@ export default {
         });
     },
     handleFileUpload(event) {
-      [this.craft_beer_image] = event.target.files;
+      [this.craftBeer.craft_beer_image] = event.target.files;
     },
   },
 };
