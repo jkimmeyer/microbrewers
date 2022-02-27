@@ -20,13 +20,32 @@ AllCops:
 
 Layout/LineLength:
   Enabled: false # Disabled as it would require heavy refactoring in most codebases. Feel free to enable it for your project!
+
+# Alignment-cops. Settings aim to avoid deep indentations and diff noise.
 Layout/FirstArgumentIndentation:
-  EnforcedStyle: consistent # Avoids deep indentations and diff noise - always indents the next line 2 spaces more than the previous.
+  EnforcedStyle: consistent
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+Layout/CaseIndentation:
+  EnforcedStyle: end
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: start_of_line
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false # Methods should be short anyway, so that a guard clause will be visible enough without an empty line
+
 Rails/ApplicationRecord:
   Exclude:
     - db/migrate/* # You **should** mock models in migrations and use ActiveRecord::Base rather than ApplicationRecord!
 Rails/EnvironmentVariableAccess:
   Enabled: true # Disabled by default, but as we typically use a wrapper class to manage ENV-variables, it should be enabled
+
 Style/ClassAndModuleChildren: # Each version has its own benefits depending on the situation
   Enabled: false
 Style/Documentation: # We currently do not enforce documentation. Do it where you feel it is useful!
@@ -37,12 +56,12 @@ Style/FrozenStringLiteralComment: # Might be enabled in the future
   Enabled: false
 Style/Lambda: # Always use `->` instead of `lambda`, as the latter does not work with `do ... end` and we do not want to use `{ ... }` for multiline-blocks (see https://github.com/rubocop-hq/rubocop/issues/1520)
   EnforcedStyle: literal
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented # Avoids deep indentations and diff noise - always indents the next line 2 spaces more than the previous.
 Style/NumericPredicate: # Sometimes "== 0" is easier to read than .zero?
   Enabled: false
 Style/StringLiterals:
   EnforcedStyle: double_quotes # Avoids having to change quotes when adding interpolation to a string.
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma # Makes it easier to swap lines and avoids noise in diffs
 Style/TrailingCommaInArrayLiteral:

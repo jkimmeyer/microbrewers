@@ -15,6 +15,17 @@
       </InputField>
 
       <InputField
+        label="Craft Beer Image"
+        input-id="input-craft-beer-image"
+      >
+        <input
+          id="input-craft-beer-image"
+          type="file"
+          @change="handleFileUpload($event)"
+        >
+      </InputField>
+
+      <InputField
         label="Description"
         input-id="input-description"
       >
@@ -136,11 +147,6 @@ import Repository from '../../repositories/index';
 const CraftBeerRepository = Repository.get('craftBeer');
 const CraftBeerTypeRepository = Repository.get('craftBeerType');
 
-function removeEmpty(obj) {
-  // eslint-disable-next-line no-unused-vars
-  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null && v !== ''));
-}
-
 export default {
   name: 'CraftBeerNew',
   components: {
@@ -152,6 +158,7 @@ export default {
         name: null,
         description: null,
         hop: null,
+        craft_beer_image: null,
         international_bitternes_unit: null,
         alcohol_volume: null,
         price: null,
@@ -171,7 +178,7 @@ export default {
   },
   methods: {
     createCraftBeer() {
-      CraftBeerRepository.create({ craft_beer: removeEmpty(this.$data.craftBeer) })
+      CraftBeerRepository.create(this.craftBeer)
         .then((response) => {
           // eslint-disable-next-line no-console
           console.log(response);
@@ -181,6 +188,9 @@ export default {
           // eslint-disable-next-line no-console
           console.log(error);
         });
+    },
+    handleFileUpload(event) {
+      [this.craftBeer.craft_beer_image] = event.target.files;
     },
   },
 };
