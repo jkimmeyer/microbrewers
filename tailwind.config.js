@@ -6,9 +6,9 @@ module.exports = {
   theme: {
     colors: {
       saffron: '#F8C630',
-      'lime-green': '#6BD425',
-      'oxford-blue': '#101935',
-      'lavender-web': '#EEEEFF',
+      limeGreen: '#6BD425',
+      oxfordBlue: '#101935',
+      lavenderWeb: '#EEEEFF',
       white: '#FFFFFF',
       black: '#000000',
     },

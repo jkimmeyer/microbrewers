@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="bg-lavenderWeb">
     <router-link
-      class="m-8"
+      class="m-8 font-serif"
       to="/craft_beers/new"
     >
       Add a craft beer
