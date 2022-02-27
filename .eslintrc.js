@@ -16,11 +16,13 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      alias: [
-        ['@', 'app/frontend'],
-      ],
+      alias: {
+        map: [
+          ['@', './app/frontend'],
+        ],
+      },
       node: {
-        paths: ['app/frontend'],
+        paths: ['./app/frontend'],
         extensions: ['.js', '.vue'],
       },
     },

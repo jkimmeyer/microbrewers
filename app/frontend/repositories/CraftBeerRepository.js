@@ -1,5 +1,5 @@
-import Client from '../clients/axiosClient';
-import { removeEmpty } from '../lib/apiHelper';
+import Client from '@/clients/axiosClient';
+import { removeEmpty } from '@/lib/apiHelper';
 
 const resource = '/craft_beers';
 const headers = {
