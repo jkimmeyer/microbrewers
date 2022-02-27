@@ -4,7 +4,7 @@
       class="m-8 font-serif"
       to="/craft_beers/new"
     >
-      Add a craft beer
+      {{ $t('brewer.addCraftBeer') }}
     </router-link>
   </div>
 </template>

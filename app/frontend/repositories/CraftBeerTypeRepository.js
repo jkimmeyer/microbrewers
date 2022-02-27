@@ -1,4 +1,4 @@
-import Client from '../clients/axiosClient';
+import Client from '@/clients/axiosClient';
 
 const resource = '/craft_beer_types';
 

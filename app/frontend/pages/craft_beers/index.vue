@@ -8,14 +8,14 @@
       />
     </div>
     <router-link to="/craft_beers/new">
-      Create a new craft beer
+      {{ $t("brewer.create") }}
     </router-link>
   </div>
 </template>
 
 <script>
-import CraftBeerView from '../../components/CraftBeerView.vue';
-import Repository from '../../repositories/index';
+import CraftBeerView from '@/components/CraftBeerView.vue';
+import Repository from '@/repositories/index';
 
 const CraftBeerRepository = Repository.get('craftBeer');
 

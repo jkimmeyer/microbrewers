@@ -1,0 +1,12 @@
+{
+  "hops": "Hopfen",
+  "alcohol": "Alkohol",
+  "name": "Name",
+  "image": "Bild vom Craft Bier",
+  "description": "Beschreibung",
+  "ibu": "Internation Bitterness Unit",
+  "flavor": "Geschmacksrichtung",
+  "color": "Farbe",
+  "category": "Kategorie",
+  "price": "Preis"
+}

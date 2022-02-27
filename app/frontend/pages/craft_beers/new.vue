@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>Add a new craft beer</h1>
+    <h1>{{ $t('brewer.create') }}</h1>
     <form>
       <InputField
-        label="Name"
+        :label="$t('craftBeer.name')"
         input-id="input-name"
       >
         <input
@@ -15,7 +15,7 @@
       </InputField>
 
       <InputField
-        label="Craft Beer Image"
+        :label="$t('craftBeer.image')"
         input-id="input-craft-beer-image"
       >
         <input
@@ -26,7 +26,7 @@
       </InputField>
 
       <InputField
-        label="Description"
+        :label="$t('craftBeer.description')"
         input-id="input-description"
       >
         <textarea
@@ -37,7 +37,7 @@
       </InputField>
 
       <InputField
-        label="Hops"
+        :label="$t('craftBeer.hops')"
         input-id="input-hops"
       >
         <input
@@ -48,7 +48,7 @@
       </InputField>
 
       <InputField
-        label="International Bitterness Unit"
+        :label="$t('craftBeer.ibu')"
         input-id="input-ibu"
       >
         <input
@@ -59,7 +59,7 @@
       </InputField>
 
       <InputField
-        label="Alcohol Volume %"
+        :label="$t('craftBeer.alcohol')"
         input-id="input-vol"
       >
         <input
@@ -71,7 +71,7 @@
       </InputField>
 
       <InputField
-        label="Price €"
+        :label="$t('craftBeer.price')"
         input-id="input-price"
       >
         <input
@@ -82,7 +82,7 @@
         >
       </InputField>
       <InputField
-        label="Flavor"
+        :label="$t('craftBeer.flavor')"
         input-id="input-flavor"
       >
         <input
@@ -93,7 +93,7 @@
       </InputField>
 
       <InputField
-        label="Color"
+        :label="$t('craftBeer.color')"
         input-id="input-color"
       >
         <input
@@ -104,7 +104,7 @@
       </InputField>
 
       <InputField
-        label="Craft Beer Type"
+        :label="$t('craftBeer.category')"
         input-id="input-craft-beer-type"
       >
         <select
@@ -130,19 +130,19 @@
         type="submit"
         @click="createCraftBeer"
       >
-        Craft Bier hinzufügen
+        {{ $t('brewer.addCraftBeer') }}
       </button>
     </form>
 
     <router-link to="/craft_beers">
-      See all craft beers
+      {{ $t('brewer.craftBeerOverview') }}
     </router-link>
   </div>
 </template>
 
 <script>
-import InputField from '../../components/InputField.vue';
-import Repository from '../../repositories/index';
+import InputField from '@/components/InputField.vue';
+import Repository from '@/repositories/index';
 
 const CraftBeerRepository = Repository.get('craftBeer');
 const CraftBeerTypeRepository = Repository.get('craftBeerType');
