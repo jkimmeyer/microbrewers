@@ -1,28 +1,38 @@
-// To see this message, add the following to the `<head>` section in your
-// views/layouts/application.html.erb
-//
-//    <%= vite_client_tag %>
-//    <%= vite_javascript_tag 'application' %>
-console.log('Vite ⚡️ Rails')
+import { createApp } from 'vue';
+import * as VueRouter from 'vue-router';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+import { createI18n } from 'vue-i18n';
+import { messages } from '@/locales/de';
 
-// If using a TypeScript entrypoint file:
-//     <%= vite_typescript_tag 'application' %>
-//
-// If you want to use .jsx or .tsx, add the extension:
-//     <%= vite_javascript_tag 'application.jsx' %>
+import App from '@/App.vue';
+import Index from '@/pages/index.vue';
+import CraftBeersNew from '@/pages/craft_beers/new.vue';
+import CraftBeersIndex from '@/pages/craft_beers/index.vue';
 
-console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
+import '@/assets/index.css';
 
-// Example: Load Rails libraries in Vite.
-//
-// import * as Turbo from '@hotwired/turbo'
-// Turbo.start()
-//
-// import ActiveStorage from '@rails/activestorage'
-// ActiveStorage.start()
-//
-// // Import all channels.
-// const channels = import.meta.globEager('./**/*_channel.js')
+const routes = [
+  { path: '/', component: Index },
+  { path: '/craft_beers/new/', component: CraftBeersNew },
+  { path: '/craft_beers', component: CraftBeersIndex },
+];
 
-// Example: Import a stylesheet in app/frontend/index.css
-// import '~/index.css'
+const router = VueRouter.createRouter({
+  history: VueRouter.createWebHashHistory(),
+  routes,
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const app = createApp(App);
+  const i18n = createI18n({
+    locale: 'de',
+    fallbackLocale: 'de',
+    messages,
+  });
+
+  app.use(i18n);
+  app.use(router);
+  app.use(VueAxios, axios);
+  app.mount('#app');
+});
