@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-lavenderWeb">
+  <div>
     <router-link
       class="m-8 font-serif"
       to="/craft_beers/new"
