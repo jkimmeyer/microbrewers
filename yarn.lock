@@ -1153,6 +1153,11 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.31.tgz#c90de7126d833dcd3a4c7534d534be2fb41faa4e"
   integrity sha512-ymN2pj6zEjiKJZbrf98UM2pfDd6F2H7ksKw7NDt/ZZ1fh5Ei39X5tABugtT03ZRlWd9imccoK0hE8hpjpU7irQ==
 
+"@websanova/vue-auth@^4.1.11":
+  version "4.1.11"
+  resolved "https://registry.yarnpkg.com/@websanova/vue-auth/-/vue-auth-4.1.11.tgz#94632036290cd8a5b33bc0bc7bd02a5b70409c53"
+  integrity sha512-ZCGTm76czdQMObTNdG8F5EvxiJoHQ6WoE0oCr9urxtM1j16Wy4zuTq7DryCOBjAH2oK1ThmDkxmxowG2ob33yA==
+
 acorn-jsx@^5.3.1:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"
