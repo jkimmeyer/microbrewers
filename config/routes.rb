@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   end
 
   root "application#index"
-  get "/*path", to: "application#index", inline: false, constraints: ->(req) { !(req.fullpath =~ %r{^/rails/active_storage/.*}) }
+  get "/*path", to: "application#index", inline: false, constraints: ->(req) { req.fullpath !~ %r{^/rails/active_storage/.*} }
 end
