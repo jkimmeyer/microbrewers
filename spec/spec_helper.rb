@@ -10,6 +10,8 @@ WebMock.disable_net_connect!(
   net_http_connect_on_start: true,
 )
 
+RSpec::Matchers.define_negated_matcher :avoid_changing, :change
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true

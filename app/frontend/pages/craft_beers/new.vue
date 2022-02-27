@@ -16,10 +16,10 @@
 
       <InputField
         label="Craft Beer Image"
-        input-id="craft-beer-image"
+        input-id="input-craft-beer-image"
       >
         <input
-          id="craft-beer-image"
+          id="input-craft-beer-image"
           type="file"
           @change="handleFileUpload($event)"
         >

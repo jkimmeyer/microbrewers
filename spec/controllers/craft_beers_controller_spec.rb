@@ -10,7 +10,7 @@ RSpec.describe Api::V1::CraftBeersController do
         { craft_beer: { name: "Holunder-Bier", craft_beer_type_id: craft_beer_type.id, craft_beer_image: craft_beer_image } }
       end
 
-      let(:craft_beer_image) { fixture_file_upload("orange.png") }
+      let(:craft_beer_image) { fixture_file_upload("brut-ale.png") }
 
       it "returns a JSON response" do
         subject
