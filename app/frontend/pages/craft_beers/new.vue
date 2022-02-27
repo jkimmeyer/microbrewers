@@ -131,6 +131,10 @@
 
 <script>
 import InputField from '../../components/InputField.vue';
+import Repository from '../../repositories/index';
+
+const CraftBeerRepository = Repository.get('craftBeer');
+const CraftBeerTypeRepository = Repository.get('craftBeerType');
 
 function removeEmpty(obj) {
   // eslint-disable-next-line no-unused-vars
@@ -160,16 +164,18 @@ export default {
     };
   },
   mounted() {
-    this.axios
-      .get('/api/v1/craft_beer_types')
+    CraftBeerTypeRepository.get()
       .then((response) => {
         this.craftBeerTypes = response.data;
       });
   },
   methods: {
     createCraftBeer() {
-      this.axios
-        .post('/api/v1/craft_beers', { craft_beer: removeEmpty(this.$data.craftBeer) })
+      CraftBeerRepository.create({ craft_beer: removeEmpty(this.$data.craftBeer) })
+        .then((response) => {
+          // eslint-disable-next-line no-console
+          console.log(response);
+        })
         .catch((error) => {
           this.errors = error.response.data;
           // eslint-disable-next-line no-console
