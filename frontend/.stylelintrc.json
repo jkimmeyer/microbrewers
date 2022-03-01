@@ -14,7 +14,8 @@
         "stylelint-order"
       ],
       "ignoreFiles": [
-        "node_modules"
+        "node_modules/**/*",
+        "dist/**/*"
       ],
       "rules": {
         "at-rule-disallowed-list": "extend",
