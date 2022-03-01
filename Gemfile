@@ -17,8 +17,8 @@ gem "aws-sdk-s3"
 gem "vite_rails", "~> 3.0"
 
 # Authentication
-gem 'devise'
-gem 'devise_token_auth', git: 'https://github.com/lynndylanhurley/devise_token_auth'
+gem "devise"
+gem "devise_token_auth", git: "https://github.com/lynndylanhurley/devise_token_auth"
 
 group :development, :test do
   gem "debug"
