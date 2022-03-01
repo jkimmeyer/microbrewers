@@ -1,6 +1,6 @@
 module Api
   module V1
-    class CraftBeerTypesController < Api::ApplicationController
+    class CraftBeerTypesController < Api::BaseController
       def index
         @craft_beer_types = CraftBeerType.all
 

@@ -45,15 +45,6 @@ RUN git clone --depth 1 https://github.com/asdf-vm/asdf.git $HOME/.asdf && \
 ENV PATH="${PATH}:/app/.asdf/shims:/app/.asdf/bin"
 COPY --chown=nonroot .tool-versions ./
 
-# Install NodeJS through asdf (version comes from .tool-versions)
-RUN asdf plugin add nodejs
-RUN asdf install nodejs
-
-# Install yarn packages (and throw an error if the lockfile would change)
-RUN npm install -g yarn
-COPY --chown=nonroot package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
-
 # ARGs can be overridden at image build time through --build-arg
 ARG RAILS_ENV
 ENV RAILS_ENV=${RAILS_ENV:-production}
