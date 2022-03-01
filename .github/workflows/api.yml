@@ -6,7 +6,7 @@ env:
   NODE_VERSION: "17.1.0"
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-api-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
