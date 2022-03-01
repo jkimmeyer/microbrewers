@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="$emit('handleSubmit', user)">
     <InputField
       v-slot="slotProps"
       :label="$t('user.email')"

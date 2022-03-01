@@ -11,6 +11,7 @@ import CraftBeersNew from '@/pages/craft_beers/new.vue';
 import CraftBeersIndex from '@/pages/craft_beers/index.vue';
 import UsersLogin from '@/pages/users/login.vue';
 import UsersRegistration from '@/pages/users/registration.vue';
+import UsersDashboard from '@/pages/users/dashboard.vue';
 
 import '@/assets/index.css';
 
@@ -20,6 +21,7 @@ const routes = [
   { path: '/craft_beers', component: CraftBeersIndex },
   { path: '/users/login', component: UsersLogin },
   { path: '/users/registration', component: UsersRegistration },
+  { path: '/dashboard', component: UsersDashboard },
 ];
 
 const router = VueRouter.createRouter({

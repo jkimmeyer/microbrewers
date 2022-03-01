@@ -1,6 +1,5 @@
 // src/modules/auth.ts
 import { reactive, toRefs } from 'vue';
-
 import Repository from '@/repositories/index';
 
 const UserRepository = Repository.get('user');

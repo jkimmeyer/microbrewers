@@ -7,6 +7,7 @@
       <form
         id="login-form"
         class="mb-4"
+        @submit.prevent="login"
       >
         <InputField
           v-slot="slotProps"
@@ -56,6 +57,7 @@
           Login
         </button>
       </form>
+
       <p class="block text-right">
         {{ $t('user.registration.missing') }}
         <router-link
@@ -70,7 +72,8 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
+import { ref, reactive } from 'vue';
+import { useRouter } from 'vue-router';
 
 import InputField from '@/components/Input/Field.vue';
 import Repository from '@/repositories/index';
@@ -85,12 +88,14 @@ export default {
   setup() {
     const { setUser } = useAuth();
     const user = reactive({ email: '', password: '' });
-    const errors = reactive([]);
+    const errors = ref([]);
+    const router = useRouter();
 
     const login = () => {
       UserRepository.login(user)
         .then((response) => {
           setUser(response.data);
+          router.push('/dashboard');
         })
         .catch((error) => {
           errors.value = error.response.data;

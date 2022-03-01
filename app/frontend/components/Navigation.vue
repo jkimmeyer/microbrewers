@@ -1,5 +1,8 @@
 <template>
-  <nav class="flex items-center justify-between mx-16">
+  <nav
+    id="navigation"
+    class="flex items-center justify-between mx-16"
+  >
     <h1 class="font-serif text-3xl">
       {{ $t('microbrewers') }}
     </h1>
@@ -19,7 +22,7 @@
         />
         <NavigationItem
           :navigation-text="$t('navigation.logout')"
-          @click="logout()"
+          @click="userLogout()"
         />
       </template>
       <template v-else>
@@ -39,6 +42,7 @@
 <script>
 import NavigationItem from '@/components/NavigationItem.vue';
 import { useAuth } from '@/composables/useAuth';
+import { useRouter } from 'vue-router';
 
 export default {
   components: {
@@ -46,9 +50,14 @@ export default {
   },
   setup() {
     const { logout, user, loggedIn } = useAuth();
+    const router = useRouter();
 
+    const userLogout = () => {
+      logout();
+      router.push('/users/login');
+    };
     return {
-      logout,
+      userLogout,
       user,
       loggedIn,
     };

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ $t('brewer.create') }}</h1>
-    <form>
+    <form @submit.prevent="createCraftBeer">
       <InputField
         v-slot="slotProps"
         :label="$t('craftBeer.name')"

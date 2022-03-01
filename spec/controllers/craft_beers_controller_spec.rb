@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.describe Api::V1::CraftBeersController do
   describe "POST /api/v1/craft_beers/create" do
+    let!(:user) { create :user }
+
     context "with valid attributes" do
       subject { post :create, params: craft_beer }
 
@@ -25,25 +27,25 @@ RSpec.describe Api::V1::CraftBeersController do
       end
 
       context "when logged in" do
-        before(:each) do
-          # User is logged in
-        end
-
         it "returns a JSON response" do
+          request.headers.merge! user.create_new_auth_token
           subject
           expect(response.content_type).to eq "application/json; charset=utf-8"
         end
 
         it "performs a successful request" do
+          request.headers.merge! user.create_new_auth_token
           subject
           expect(response).to have_http_status 200
         end
 
         it "creates a craft beer" do
+          request.headers.merge! user.create_new_auth_token
           expect { subject }.to change { CraftBeer.count }.from(0).to(1)
         end
 
         it "creates a blob " do
+          request.headers.merge! user.create_new_auth_token
           expect { subject }.to change { ActiveStorage::Blob.count }.from(0).to(1)
         end
       end
@@ -52,30 +54,29 @@ RSpec.describe Api::V1::CraftBeersController do
     context "with invalid attributes" do
       subject { post :create, params: invalid_craft_beer }
 
-      before(:each) do
-        # Log in user
-      end
-
       let(:invalid_craft_beer) do
         { craft_beer: { name: "Holunder-Bier" } }
       end
 
       it "returns errors" do
+        request.headers.merge! user.create_new_auth_token
         subject
         expect(response.body).to eq({ errors: { craft_beer_type: ["must exist"] } }.to_json)
       end
 
       it "creates no beer" do
+        request.headers.merge! user.create_new_auth_token
         expect { subject }.not_to(change { CraftBeer.count })
       end
 
       it "returns json" do
+        request.headers.merge! user.create_new_auth_token
         subject
-
         expect(response.content_type).to eq "application/json; charset=utf-8"
       end
 
       it "does not create a blob" do
+        request.headers.merge! user.create_new_auth_token
         expect { subject }.not_to change { ActiveStorage::Blob.count }.from(0)
       end
     end

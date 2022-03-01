@@ -23,10 +23,6 @@ export default {
       formData.append(`craft_beer[${key}]`, craftBeer[key]);
     });
 
-    if (payload.craft_beer_image) {
-      formData.append('craft_beer[craft_beer_image]', payload.craft_beer_image);
-    }
-
     return Client.post(`${resource}`, formData, headers);
   },
   update(payload, id) {
