@@ -253,6 +253,14 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
+    sentry-rails (5.1.1)
+      railties (>= 5.0)
+      sentry-ruby-core (~> 5.1.1)
+    sentry-ruby (5.1.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      sentry-ruby-core (= 5.1.1)
+    sentry-ruby-core (5.1.1)
+      concurrent-ruby
     strscan (3.0.1)
     thor (1.2.1)
     timeout (0.2.0)
@@ -309,6 +317,8 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   selenium-webdriver
+  sentry-rails
+  sentry-ruby
   tzinfo-data
   vite_rails (~> 3.0)
   web-console
