@@ -12,6 +12,10 @@ gem "rails", "~> 7.0.2"
 gem "tzinfo-data"
 gem "vite_rails", "~> 3.0"
 
+# Application Monitoring
+gem "sentry-ruby"
+gem "sentry-rails"
+
 group :development, :test do
   gem "debug"
 end
