@@ -6,6 +6,11 @@ module.exports = {
   extends: [
     'airbnb-base',
     'plugin:vue/recommended',
+    'plugin:cypress/recommended',
+
+  ],
+  plugins: [
+    'cypress',
   ],
   env: {
     browser: true,
