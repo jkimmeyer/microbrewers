@@ -3,102 +3,120 @@
     <h1>{{ $t('brewer.create') }}</h1>
     <form>
       <InputField
+        v-slot="slotProps"
         :label="$t('craftBeer.name')"
         input-id="input-name"
       >
         <input
           id="input-name"
           v-model="craftBeer.name"
+          :class="slotProps.class"
           required
           type="text"
         >
       </InputField>
 
       <InputField
+        v-slot="slotProps"
         :label="$t('craftBeer.image')"
         input-id="input-craft-beer-image"
       >
         <input
           id="input-craft-beer-image"
+          :class="slotProps.class"
           type="file"
           @change="handleFileUpload($event)"
         >
       </InputField>
 
       <InputField
+        v-slot="slotProps"
         :label="$t('craftBeer.description')"
         input-id="input-description"
       >
         <textarea
           id="input-description"
           v-model="craftBeer.description"
+          :class="slotProps.class"
           type="textfield"
         />
       </InputField>
 
       <InputField
+        v-slot="slotProps"
         :label="$t('craftBeer.hops')"
         input-id="input-hops"
       >
         <input
           id="input-hops"
           v-model="craftBeer.hop"
+          :class="slotProps.class"
           type="text"
         >
       </InputField>
 
       <InputField
+        v-slot="slotProps"
         :label="$t('craftBeer.ibu')"
         input-id="input-ibu"
       >
         <input
           id="input-ibu"
           v-model="craftBeer.international_bitterness_unit"
+          :class="slotProps.class"
           type="number"
         >
       </InputField>
 
       <InputField
+        v-slot="slotProps"
         :label="$t('craftBeer.alcohol')"
         input-id="input-vol"
       >
         <input
           id="input-vol"
           v-model="craftBeer.alcohol_volume"
+          :class="slotProps.class"
           type="number"
           step=".1"
         >
       </InputField>
 
       <InputField
+        v-slot="slotProps"
         :label="$t('craftBeer.price')"
         input-id="input-price"
       >
         <input
           id="input-price"
           v-model="craftBeer.price"
+          :class="slotProps.class"
           type="number"
           step=".01"
         >
       </InputField>
       <InputField
+        v-slot="slotProps"
         :label="$t('craftBeer.flavor')"
         input-id="input-flavor"
       >
         <input
           id="input-flavor"
           v-model="craftBeer.flavor"
+          :class="slotProps.class"
           type="text"
         >
       </InputField>
 
       <InputField
+        v-slot="slotProps"
         :label="$t('craftBeer.color')"
         input-id="input-color"
       >
         <input
           id="input-color"
           v-model="craftBeer.color"
+          :class="slotProps.class"
           type="text"
         >
       </InputField>
@@ -141,7 +159,7 @@
 </template>
 
 <script>
-import InputField from '@/components/InputField.vue';
+import InputField from '@/components/Input/Field.vue';
 import Repository from '@/repositories/index';
 
 const CraftBeerRepository = Repository.get('craftBeer');

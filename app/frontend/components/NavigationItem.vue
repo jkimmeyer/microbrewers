@@ -2,9 +2,15 @@
   <li
     class="font-serif text-xl"
   >
-    <router-link :to="navigationLink">
+    <router-link
+      v-if="navigationLink"
+      :to="navigationLink"
+    >
       {{ navigationText }}
     </router-link>
+    <button v-else>
+      {{ navigationText }}
+    </button>
   </li>
 </template>
 
@@ -14,7 +20,7 @@ export default {
   props: {
     navigationLink: {
       type: String,
-      required: true,
+      default: null,
     },
     navigationText: {
       type: String,

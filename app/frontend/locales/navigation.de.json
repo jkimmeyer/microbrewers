@@ -2,5 +2,8 @@
   "shop": "Shop",
   "login": "Login",
   "brewers": "Brauende",
-  "registration": "Registrierung"
+  "registration": "Registrierung",
+  "continue": "Weiter",
+  "profile": "Profil",
+  "logout": "Logout"
 }

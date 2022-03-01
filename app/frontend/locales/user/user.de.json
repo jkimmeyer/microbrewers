@@ -1,6 +1,12 @@
 {
   "login": "Login",
-  "registration": "Registrieren",
+  "loginForm": "Deine Login-Daten",
   "email": "E-Mail",
-  "password": "Passwort"
+  "password": "Passwort",
+  "passwordConfirmation": "Passwort-Bestätigung",
+  "registration": {
+    "invitation": "Jetzt anmelden!",
+    "missing": "Noch nicht registriert?"
+  },
+  "termsAndConditions": "Ich habe die Geschäftsbedinungen gelesen und akzeptiere diese."
 }

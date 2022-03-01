@@ -2,6 +2,16 @@ require "rails_helper"
 
 RSpec.describe "Create Craft Beer", js: true do
   let!(:craft_beer_types) { create :craft_beer_type }
+  let!(:user) { create :user }
+
+  before(:each) do
+    visit "/#/users/login"
+    within_login_form do
+      fill_in "input-email", with: user.email
+      fill_in "input-password", with: user.password
+      click_on "Login"
+    end
+  end
 
   it "renders a craft beer form" do
     visit "/#/craft_beers/new"

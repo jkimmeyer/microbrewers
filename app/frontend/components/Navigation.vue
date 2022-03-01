@@ -12,24 +12,46 @@
         :navigation-text="$t('navigation.brewers')"
         navigation-link="/brewers"
       />
-      <NavigationItem
-        :navigation-text="$t('navigation.login')"
-        navigation-link="/login"
-      />
-      <NavigationItem
-        :navigation-text="$t('navigation.registration')"
-        navigation-link="/registration"
-      />
+      <template v-if="loggedIn">
+        <NavigationItem
+          :navigation-text="$t('navigation.profile')"
+          navigation-link="/users/profile"
+        />
+        <NavigationItem
+          :navigation-text="$t('navigation.logout')"
+          @click="logout()"
+        />
+      </template>
+      <template v-else>
+        <NavigationItem
+          :navigation-text="$t('navigation.login')"
+          navigation-link="/users/login"
+        />
+        <NavigationItem
+          :navigation-text="$t('navigation.registration')"
+          navigation-link="/users/registration"
+        />
+      </template>
     </ul>
   </nav>
 </template>
 
 <script>
 import NavigationItem from '@/components/NavigationItem.vue';
+import { useAuth } from '@/composables/useAuth';
 
 export default {
   components: {
     NavigationItem,
+  },
+  setup() {
+    const { logout, user, loggedIn } = useAuth();
+
+    return {
+      logout,
+      user,
+      loggedIn,
+    };
   },
 };
 </script>

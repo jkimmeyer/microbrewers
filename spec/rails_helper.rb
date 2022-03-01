@@ -18,6 +18,8 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = true
 
+  config.include SystemSpecHelpers, type: :system
+
   config.with_options type: :feature do |co|
     co.include Rails.application.routes.url_helpers
   end
