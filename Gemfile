@@ -32,10 +32,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "capybara"
   gem "faker"
-  gem "selenium-webdriver"
-  gem "webdrivers"
   gem "webmock"
 end
 

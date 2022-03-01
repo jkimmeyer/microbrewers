@@ -89,16 +89,6 @@ GEM
     bootsnap (1.10.3)
       msgpack (~> 1.2)
     builder (3.2.4)
-    capybara (3.36.0)
-      addressable
-      matrix
-      mini_mime (>= 0.1.3)
-      nokogiri (~> 1.8)
-      rack (>= 1.6.0)
-      rack-test (>= 0.6.3)
-      regexp_parser (>= 1.5, < 3.0)
-      xpath (~> 3.2)
-    childprocess (4.1.0)
     concurrent-ruby (1.1.9)
     crack (0.4.5)
       rexml
@@ -139,7 +129,6 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
-    matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.15.0)
@@ -245,11 +234,6 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
-    rubyzip (2.3.2)
-    selenium-webdriver (4.1.0)
-      childprocess (>= 0.5, < 5.0)
-      rexml (~> 3.2, >= 3.2.5)
-      rubyzip (>= 1.2.2)
     sentry-rails (5.1.1)
       railties (>= 5.0)
       sentry-ruby-core (~> 5.1.1)
@@ -271,10 +255,6 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webdrivers (5.0.0)
-      nokogiri (~> 1.6)
-      rubyzip (>= 1.3.0)
-      selenium-webdriver (~> 4.0)
     webmock (3.14.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -282,8 +262,6 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    xpath (3.2.0)
-      nokogiri (~> 1.8)
     zeitwerk (2.5.4)
 
 PLATFORMS
@@ -292,7 +270,6 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk-s3
   bootsnap
-  capybara
   debug
   dotenv-rails
   factory_bot_rails
@@ -306,12 +283,10 @@ DEPENDENCIES
   rubocop
   rubocop-performance
   rubocop-rails
-  selenium-webdriver
   sentry-rails
   sentry-ruby
   tzinfo-data
   web-console
-  webdrivers
   webmock
 
 RUBY VERSION
