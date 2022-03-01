@@ -12,8 +12,7 @@ gem "rails", "~> 7.0.2"
 gem "tzinfo-data"
 
 # Cross Origin
-gem 'rack-cors'
-
+gem "rack-cors"
 
 # Application Monitoring
 gem "sentry-rails"
