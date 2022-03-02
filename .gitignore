@@ -43,6 +43,8 @@ node_modules
 
 # Specs
 /spec/examples.txt
+/frontend/cypress/screenshots
+/frontend/cypress/videos
 
 # Ignore dotenv files
 .env.*
