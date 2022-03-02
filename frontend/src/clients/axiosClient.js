@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = '/api/v1';
+const baseURL = import.meta.env.MODE === 'development' ? 'http://localhost:3000/api/v1' : '/api/v1';
 const ACCESS_TOKEN_KEY = 'access-token';
 const CLIENT_KEY = 'client';
 const UID_KEY = 'uid';
