@@ -6,6 +6,11 @@ module.exports = {
   extends: [
     'airbnb-base',
     'plugin:vue/recommended',
+    'plugin:cypress/recommended',
+
+  ],
+  plugins: [
+    'cypress',
   ],
   env: {
     browser: true,
@@ -18,11 +23,11 @@ module.exports = {
     'import/resolver': {
       alias: {
         map: [
-          ['@', './app/frontend'],
+          ['@', './src'],
         ],
       },
       node: {
-        paths: ['./app/frontend'],
+        paths: ['./src'],
         extensions: ['.js', '.vue'],
       },
     },

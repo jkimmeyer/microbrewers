@@ -14,8 +14,8 @@
         "stylelint-order"
       ],
       "ignoreFiles": [
-        "node_modules",
-        "public/vite-dev/**"
+        "node_modules/**/*",
+        "dist/**/*"
       ],
       "rules": {
         "at-rule-disallowed-list": "extend",

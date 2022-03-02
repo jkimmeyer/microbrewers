@@ -10,7 +10,9 @@ gem "pg"
 gem "puma"
 gem "rails", "~> 7.0.2"
 gem "tzinfo-data"
-gem "vite_rails", "~> 3.0"
+
+# Cross Origin
+gem "rack-cors"
 
 # Application Monitoring
 gem "sentry-rails"
@@ -33,10 +35,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "capybara"
   gem "faker"
-  gem "selenium-webdriver"
-  gem "webdrivers"
   gem "webmock"
 end
 

@@ -1,7 +1,6 @@
 module.exports = {
   content: [
-    './index.html',
-    './app/frontend/**/*.{vue,js,ts,jsx,tsx}',
+    './src/**/*.{vue,js,ts,jsx,tsx}',
   ],
   theme: {
     colors: {
