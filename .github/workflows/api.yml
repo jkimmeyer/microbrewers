@@ -228,12 +228,12 @@ jobs:
 
       - name: "Rollout new image"
         run: |
-          kubectl set image deployments/microbrewers-deployment microbrewers=fra.ocir.io/${{ secrets.OCI_NAMESPACE }}/microbrewers-${{ needs.build.outputs.app_env }}:${{ needs.build.outputs.github_sha }}@${{ needs.build.outputs.digest }}
+          kubectl set image deployments/microbrewers-api-deployment microbrewers-api=fra.ocir.io/${{ secrets.OCI_NAMESPACE }}/microbrewers-${{ needs.build.outputs.app_env }}:${{ needs.build.outputs.github_sha }}@${{ needs.build.outputs.digest }}
 
       - name: "Check deployment"
         timeout-minutes: 4
         run: |
-          until kubectl rollout status deployment/microbrewers-deployment | grep 'deployment "microbrewers-deployment" successfully rolled out'
+          until kubectl rollout status deployment/microbrewers-api-deployment | grep 'deployment "microbrewers-api-deployment" successfully rolled out'
           do
             echo "Deployment not finished, retry in 5 seconds"
             sleep 5

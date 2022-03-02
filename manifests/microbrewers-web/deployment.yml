@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microbrewers-web-deployment
+  labels:
+    app: microbrewers-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: microbrewers-pod
+  template:
+    metadata:
+      labels:
+        app: microbrewers-pod
+    spec:
+      containers:
+      - env:
+        image: fra.ocir.io/fr2tp465ruxb/microbrewers-web-staging:latest@sha256:0117c510a4b9ed209e9a5992260f986d6b301ca84c6564c238c3b6ea29d833ce
+        imagePullPolicy: Always
+        name: microbrewers-web
+        ports:
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+      imagePullSecrets:
+        - name: microbrewers-image-registry
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microbrewers-loadbalancer
+  labels:
+    app: microbrewers
+spec:
+  selector:
+    app: microbrewers-pod
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    name: http
+  type: LoadBalancer

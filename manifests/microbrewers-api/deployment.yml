@@ -2,22 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: microbrewers-deployment
+  name: microbrewers-api-deployment
   labels:
-    app: microbrewers
+    app: microbrewers-api
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: microbrewers
+      app: microbrewers-api-pod
   template:
     metadata:
       labels:
-        app: microbrewers
+        app: microbrewers-api-pod
     spec:
       containers:
-      - name: microbrewers
-        image: fra.ocir.io/fr2tp465ruxb/microbrewers-staging:0.0.2
+      - name: microbrewers-api
+        image: fra.ocir.io/fr2tp465ruxb/microbrewers-staging:latest
         ports:
           - name: web
             protocol: "TCP"
@@ -39,16 +39,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: microbrewers-loadbalancer
-  annotations:
-    service.beta.kubernetes.io/oci-load-balancer-ssl-ports: "443"
-    service.beta.kubernetes.io/oci-load-balancer-tls-secret: ssl-certificate-secret
-spec:
-  type: LoadBalancer
-  selector:
+  name: microbrewers-api-service
+  labels:
     app: microbrewers
-  ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 3000
+spec:
+   type: LoadBalancer
+   ports:
+     - protocol: TCP
+       port: 3000
+       targetPort: 3000
+   selector:
+     app: microbrewers-api-pod

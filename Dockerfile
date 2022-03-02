@@ -67,9 +67,6 @@ RUN bundle config set deployment 'true' \
 # Copy all the rest of the application
 COPY --chown=nonroot . ./
 
-# Precompile assets with minimal env needed to run rake tasks:
-RUN export $(cat .env.build | xargs) && bundle exec rake assets:precompile
-
 # Run the web server by default and expose its port
 EXPOSE 3000
 CMD ["bundle", "exec", "puma"]
