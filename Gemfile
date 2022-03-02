@@ -13,8 +13,12 @@ gem "tzinfo-data"
 # Object Storage
 gem "aws-sdk-s3"
 
-# Frontend
-gem "vite_rails", "~> 3.0"
+# Cross Origin
+gem "rack-cors"
+
+# Application Monitoring
+gem "sentry-rails"
+gem "sentry-ruby"
 
 # Authentication
 gem "devise"
@@ -37,10 +41,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "capybara"
   gem "faker"
-  gem "selenium-webdriver"
-  gem "webdrivers"
   gem "webmock"
 end
 

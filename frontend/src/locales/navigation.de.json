@@ -1,0 +1,23 @@
+{
+  "shop": "Shop",
+  "login": "Login",
+  "brewers": "Brauende",
+  "registration": "Registrierung",
+  "notFound": {
+    "title": "Nicht gefunden.",
+    "description": "Sieht so aus, als ob unsere Entwickler diese Seite beim Trinken unserer leckeren Biere verloren haben."
+  },
+  "unauthorized": {
+    "title": "Kein Zugriff",
+    "description": "Leider hast du hier keinen Zugriff. Bist du vielleicht nicht angemeldet?"
+  },
+  "serverError": {
+    "title": "Server-Fehler",
+    "description": "Sieht so aus, als ob unsere Entwickler beim entwerfen dieser Seite zu viel von unserem leckeren Craft Bier getrunken haben."
+  },
+  "previous": "Zurück zur vorherigen Seite",
+  "root": "Zur Startseite",
+  "continue": "Weiter",
+  "profile": "Profil",
+  "logout": "Logout"
+}

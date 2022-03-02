@@ -9,7 +9,4 @@ Rails.application.routes.draw do
       resources :craft_beer_types
     end
   end
-
-  root "application#index"
-  get "/*path", to: "application#index", inline: false, constraints: ->(req) { req.fullpath !~ %r{^/rails/active_storage/.*} }
 end
