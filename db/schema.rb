@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_27_165938) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_02_131621) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_27_165938) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "admins", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_admins_on_user_id"
+  end
+
+  create_table "breweries", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_breweries_on_user_id"
+  end
+
   create_table "craft_beer_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -61,6 +75,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_27_165938) do
     t.datetime "updated_at", null: false
     t.bigint "craft_beer_type_id"
     t.index ["craft_beer_type_id"], name: "index_craft_beers_on_craft_beer_type_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
