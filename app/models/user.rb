@@ -6,4 +6,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
+  belongs_to :account, polymorphic: true, optional: true
 end

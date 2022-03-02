@@ -1,3 +1,3 @@
 class Customer < ApplicationRecord
-  belongs_to :user
+  has_one :user, as: :account, required: true
 end
