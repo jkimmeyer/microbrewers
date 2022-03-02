@@ -27,25 +27,25 @@ RSpec.describe Api::V1::CraftBeersController do
       end
 
       context "when logged in" do
-        it "returns a JSON response" do
+        before(:each) do
           request.headers.merge! user.create_new_auth_token
+        end
+
+        it "returns a JSON response" do
           subject
           expect(response.content_type).to eq "application/json; charset=utf-8"
         end
 
         it "performs a successful request" do
-          request.headers.merge! user.create_new_auth_token
           subject
           expect(response).to have_http_status 200
         end
 
         it "creates a craft beer" do
-          request.headers.merge! user.create_new_auth_token
           expect { subject }.to change { CraftBeer.count }.from(0).to(1)
         end
 
         it "creates a blob " do
-          request.headers.merge! user.create_new_auth_token
           expect { subject }.to change { ActiveStorage::Blob.count }.from(0).to(1)
         end
       end
@@ -58,25 +58,25 @@ RSpec.describe Api::V1::CraftBeersController do
         { craft_beer: { name: "Holunder-Bier" } }
       end
 
-      it "returns errors" do
+      before(:each) do
         request.headers.merge! user.create_new_auth_token
+      end
+
+      it "returns errors" do
         subject
         expect(response.body).to eq({ errors: { craft_beer_type: ["must exist"] } }.to_json)
       end
 
       it "creates no beer" do
-        request.headers.merge! user.create_new_auth_token
         expect { subject }.not_to(change { CraftBeer.count })
       end
 
       it "returns json" do
-        request.headers.merge! user.create_new_auth_token
         subject
         expect(response.content_type).to eq "application/json; charset=utf-8"
       end
 
       it "does not create a blob" do
-        request.headers.merge! user.create_new_auth_token
         expect { subject }.not_to change { ActiveStorage::Blob.count }.from(0)
       end
     end
