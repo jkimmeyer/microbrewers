@@ -13,10 +13,16 @@ const axiosClient = axios.create({
   baseURL,
 });
 
+const isAccessTokenMissing = (accessToken) => accessToken == null || accessToken === '' || accessToken === undefined;
+
 // Add a request interceptor
 axiosClient.interceptors.request.use((config) => {
   const updatedConfig = config;
-  updatedConfig.headers[ACCESS_TOKEN_KEY] = window.localStorage.getItem(ACCESS_TOKEN);
+  const token = window.localStorage.getItem(ACCESS_TOKEN);
+
+  if (isAccessTokenMissing(token)) return config;
+
+  updatedConfig.headers[ACCESS_TOKEN_KEY] = token;
   updatedConfig.headers[CLIENT_KEY] = window.localStorage.getItem(CLIENT);
   updatedConfig.headers[UID_KEY] = window.localStorage.getItem(UID);
 
@@ -25,11 +31,13 @@ axiosClient.interceptors.request.use((config) => {
 
 // Add a response interceptor
 axiosClient.interceptors.response.use((response) => {
-  if (response.headers[ACCESS_TOKEN_KEY] !== null && response.headers[ACCESS_TOKEN_KEY] !== '' && response.headers[ACCESS_TOKEN_KEY] !== undefined) {
-    window.localStorage.setItem(ACCESS_TOKEN, response.headers[ACCESS_TOKEN_KEY]);
-    window.localStorage.setItem(CLIENT, response.headers[CLIENT_KEY]);
-    window.localStorage.setItem(UID, response.headers[UID_KEY]);
-  }
+  const token = response.headers[ACCESS_TOKEN_KEY];
+
+  if (isAccessTokenMissing(token)) return response;
+
+  window.localStorage.setItem(ACCESS_TOKEN, token);
+  window.localStorage.setItem(CLIENT, response.headers[CLIENT_KEY]);
+  window.localStorage.setItem(UID, response.headers[UID_KEY]);
 
   return response;
 });

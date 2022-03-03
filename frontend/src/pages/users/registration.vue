@@ -20,15 +20,19 @@ export default {
   components: {
     UserForm,
   },
-  methods: {
-    registerUser(user) {
+  setup() {
+    const registerUser = (user) => {
       UserRepository.register(user)
         .catch((error) => {
           this.errors = error.response.data;
           // eslint-disable-next-line no-console
           console.log(error);
         });
-    },
+    };
+
+    return {
+      registerUser,
+    };
   },
 };
 </script>

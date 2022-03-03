@@ -1,19 +1,13 @@
 import { createApp } from 'vue';
-import * as VueRouter from 'vue-router';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import { createI18n } from 'vue-i18n';
 import { messages } from '@/locales/de';
-import { routes } from '@/config/routes';
+import { router } from '@/config/router';
 
 import App from '@/App.vue';
 
 import '@/assets/index.css';
-
-const router = VueRouter.createRouter({
-  history: VueRouter.createWebHistory(),
-  routes,
-});
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = createApp(App);

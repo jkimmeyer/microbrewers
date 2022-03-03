@@ -7,6 +7,7 @@ const UserRepository = Repository.get('user');
 const state = reactive({
   user: undefined,
   loggedIn: false,
+  authenticating: false,
 });
 
 const ACCESS_TOKEN = 'ACCESS_TOKEN';
@@ -18,25 +19,6 @@ const removeTokenFromLocalStorage = () => {
   window.localStorage.removeItem(CLIENT);
   window.localStorage.removeItem(UID);
 };
-
-const token = window.localStorage.getItem(ACCESS_TOKEN);
-
-if (token) {
-  state.authenticating = true;
-
-  UserRepository.validateToken()
-    .then((response) => {
-      state.user = response.data.data;
-      state.loggedIn = true;
-    })
-    .catch(() => {
-      // TODO: Sent exception to sentry
-      removeTokenFromLocalStorage();
-    })
-    .finally(() => {
-      state.authenticating = false;
-    });
-}
 
 export const useAuth = () => {
   const setUser = (payload) => {
@@ -52,7 +34,30 @@ export const useAuth = () => {
     state.loggedIn = false;
   };
 
+  const validateToken = () => {
+    const token = window.localStorage.getItem(ACCESS_TOKEN);
+
+    if (token) {
+      state.authenticating = true;
+
+      return UserRepository.validateToken()
+        .then((response) => {
+          state.user = response.data.data;
+          state.loggedIn = true;
+        })
+        .catch(() => {
+          // TODO: Sent exception to sentry
+          removeTokenFromLocalStorage();
+        })
+        .finally(() => {
+          state.authenticating = false;
+        });
+    }
+    return Promise.resolve();
+  };
+
   return {
+    validateToken,
     setUser,
     logout,
     ...toRefs(state),

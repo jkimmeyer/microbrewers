@@ -25,6 +25,11 @@ describe('The Login Page', () => {
       });
     });
 
+    it('user gets redirected to login', () => {
+      cy.visit('/dashboard');
+      cy.location('pathname').should('eq', '/users/login');
+    });
+
     it('user can login with valid credentials', () => {
       cy.intercept('POST', '/api/v1/auth/sign_in', {
         statusCode: 200,
@@ -58,6 +63,42 @@ describe('The Login Page', () => {
           expect(localStorage.getItem('CLIENT')).to.eq('5mRwPQPv6BpJesUG4WSfJg');
           expect(localStorage.getItem('UID')).to.eq('test@example.com');
           cy.location('pathname').should('eq', '/dashboard');
+        });
+      });
+    });
+  });
+
+  context('when logged in', () => {
+    beforeEach(() => {
+      cy.loginViaAPI();
+    });
+
+    it('user gets redirected to dashboard from login', () => {
+      cy.validateToken();
+      cy.visit('/users/login');
+
+      cy.location('pathname').should('eq', '/dashboard');
+    });
+
+    it('user gets redirected to dashboard from registration', () => {
+      cy.validateToken();
+
+      cy.visit('/users/registration');
+      cy.location('pathname').should('eq', '/dashboard');
+    });
+
+    it('user can logout', () => {
+      cy.get('#navigation').within(() => {
+        cy.contains('Profil');
+        cy.contains('Logout');
+
+        cy.get('button').click().then(() => {
+          cy.contains('Login');
+          cy.contains('Registrierung');
+          expect(localStorage.getItem('ACCESS_TOKEN')).to.eq(null);
+          expect(localStorage.getItem('CLIENT')).to.eq(null);
+          expect(localStorage.getItem('UID')).to.eq(null);
+          cy.location('pathname').should('eq', '/users/login');
         });
       });
     });
