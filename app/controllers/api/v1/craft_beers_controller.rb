@@ -39,7 +39,7 @@ module Api
       def craft_beers_as_json(craft_beers)
         craft_beers.map do |craft_beer|
           craft_beer.as_json.merge(
-            image_url: craft_beer_image_url(craft_beer),
+            craft_beer_image: craft_beer_image_url(craft_beer),
           )
         end
       end

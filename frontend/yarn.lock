@@ -978,6 +978,23 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@iconify/icons-fluent@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-fluent/-/icons-fluent-1.2.3.tgz#c9a4fb6c2595f9c4e6bb5eceabd662b2eeac6b2e"
+  integrity sha512-i4LXST5tfQC3QRzrdqehZ6FrjvfnIoRRLGojpDhn55vSHXxIB6SEGa7wf0x/dgiQ9vBRJHYM2AlVlt+7kG8oSw==
+  dependencies:
+    "@iconify/types" "^1.0.12"
+
+"@iconify/types@^1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@iconify/types/-/types-1.0.12.tgz#839f1f784b7030b94482d51996570f4dbd7d6796"
+  integrity sha512-6er6wSGF3hgc1JEZqiGpg21CTCjHBYOUwqLmb2Idzkjiw6ogalGP0ZMLVutCzah+0WB4yP+Zd2oVPN8jvJ+Ftg==
+
+"@iconify/vue@^3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@iconify/vue/-/vue-3.1.4.tgz#b6336afe0fe1d44093038f11a69585607db983ca"
+  integrity sha512-oJm0VPl1fhlsbBX9tBeAbtmZ5iHCxCkVQdCi81lxdA3cqc9yqBlCloqObX93/YWNM5N8j/j0Efk6iSwsihOoNA==
+
 "@intlify/core-base@9.1.9":
   version "9.1.9"
   resolved "https://registry.yarnpkg.com/@intlify/core-base/-/core-base-9.1.9.tgz#e4e8c951010728e4af3a0d13d74cf3f9e7add7f6"
