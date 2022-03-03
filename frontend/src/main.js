@@ -11,7 +11,7 @@ import App from '@/App.vue';
 import '@/assets/index.css';
 
 const router = VueRouter.createRouter({
-  history: VueRouter.createWebHashHistory(),
+  history: VueRouter.createWebHistory(),
   routes,
 });
 

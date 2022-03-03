@@ -1,5 +1,6 @@
 describe('The Home Page', () => {
   it('successfully loads', () => {
-    cy.visit('http://localhost:4173');
+    cy.visit('/');
+    cy.get('#navigation').contains('Microbrewers');
   });
 });

@@ -45,14 +45,16 @@
           </router-link>
         </p>
 
-        <div v-if="errors">
+        <div
+          v-if="errors"
+          class="errors"
+        >
           {{ errors.errors }}
         </div>
 
         <button
           class="block bg-saffron px-16 py-1 text-xl rounded-lg mt-4 ml-auto"
           type="submit"
-          @click="login()"
         >
           Login
         </button>
