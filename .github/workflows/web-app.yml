@@ -76,6 +76,7 @@ jobs:
           install-command: yarn --frozen-lockfile --silent
           build: yarn build
           start: yarn preview
+          config: baseUrl=http://localhost:4173
           wait-on: 'http://localhost:4173'
 
 

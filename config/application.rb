@@ -8,7 +8,6 @@ Bundler.require(*Rails.groups)
 
 module MicrobrewersWeb
   class Application < Rails::Application
-
     # This also configures session_options for use below
     config.session_store :cookie_store, key: "_interslice_session"
 
