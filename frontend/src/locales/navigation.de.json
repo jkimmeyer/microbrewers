@@ -16,5 +16,8 @@
     "description": "Sieht so aus, als ob unsere Entwickler beim entwerfen dieser Seite zu viel von unserem leckeren Craft Bier getrunken haben."
   },
   "previous": "Zurück zur vorherigen Seite",
-  "root": "Zur Startseite"
+  "root": "Zur Startseite",
+  "continue": "Weiter",
+  "profile": "Profil",
+  "logout": "Logout"
 }

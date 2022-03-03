@@ -1,5 +1,8 @@
 <template>
-  <nav class="flex items-center justify-between mx-16">
+  <nav
+    id="navigation"
+    class="flex items-center justify-between mx-16"
+  >
     <h1 class="font-serif text-3xl">
       {{ $t('microbrewers') }}
     </h1>
@@ -12,24 +15,52 @@
         :navigation-text="$t('navigation.brewers')"
         navigation-link="/brewers"
       />
-      <NavigationItem
-        :navigation-text="$t('navigation.login')"
-        navigation-link="/login"
-      />
-      <NavigationItem
-        :navigation-text="$t('navigation.registration')"
-        navigation-link="/registration"
-      />
+      <template v-if="loggedIn">
+        <NavigationItem
+          :navigation-text="$t('navigation.profile')"
+          navigation-link="/users/profile"
+        />
+        <NavigationItem
+          :navigation-text="$t('navigation.logout')"
+          @click="userLogout()"
+        />
+      </template>
+      <template v-else>
+        <NavigationItem
+          :navigation-text="$t('navigation.login')"
+          navigation-link="/users/login"
+        />
+        <NavigationItem
+          :navigation-text="$t('navigation.registration')"
+          navigation-link="/users/registration"
+        />
+      </template>
     </ul>
   </nav>
 </template>
 
 <script>
 import NavigationItem from '@/components/NavigationItem.vue';
+import { useAuth } from '@/composables/useAuth';
+import { useRouter } from 'vue-router';
 
 export default {
   components: {
     NavigationItem,
+  },
+  setup() {
+    const { logout, user, loggedIn } = useAuth();
+    const router = useRouter();
+
+    const userLogout = () => {
+      logout();
+      router.push('/users/login');
+    };
+    return {
+      userLogout,
+      user,
+      loggedIn,
+    };
   },
 };
 </script>

@@ -16,6 +16,9 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = true
 
+  config.include Warden::Test::Helpers
+  config.include Devise::Test::ControllerHelpers, type: :controller
+
   config.with_options type: :feature do |co|
     co.include Rails.application.routes.url_helpers
   end

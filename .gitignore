@@ -4,6 +4,9 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+# OS
+.DS_STORE
+
 # Ignore bundler config.
 /.bundle
 
@@ -43,6 +46,8 @@ node_modules
 
 # Specs
 /spec/examples.txt
+/frontend/cypress/screenshots
+/frontend/cypress/videos
 
 # Ignore dotenv files
 .env.*

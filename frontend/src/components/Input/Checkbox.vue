@@ -1,18 +1,19 @@
 <template>
-  <div class="input-field">
+  <div class="flex items-center mb-2">
+    <slot class="mr-2" />
+
     <label
-      class="input-field--label"
+      class="block mr-2 text-lg"
       :for="inputId"
     >
       {{ label }}
     </label>
-    <slot />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'InputField',
+  name: 'InputCheckbox',
   props: {
     label: {
       type: String,
@@ -25,13 +26,3 @@ export default {
   },
 };
 </script>
-
-<style>
-  .input-field {
-    margin-bottom: 16px;
-  }
-
-  .input-field--label {
-    margin-right: 10px;
-  }
-</style>

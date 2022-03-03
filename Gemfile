@@ -3,7 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(File.join(__dir__, ".tool-versions")).match(/(?<=ruby)(.*)/).captures.first.strip
 
-gem "aws-sdk-s3"
 gem "bootsnap"
 gem "jbuilder"
 gem "pg"
@@ -11,12 +10,19 @@ gem "puma"
 gem "rails", "~> 7.0.2"
 gem "tzinfo-data"
 
+# Object Storage
+gem "aws-sdk-s3"
+
 # Cross Origin
 gem "rack-cors"
 
 # Application Monitoring
 gem "sentry-rails"
 gem "sentry-ruby"
+
+# Authentication
+gem "devise"
+gem "devise_token_auth", git: "https://github.com/lynndylanhurley/devise_token_auth"
 
 group :development, :test do
   gem "debug"

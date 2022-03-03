@@ -1,6 +1,8 @@
 module Api
   module V1
     class CraftBeersController < Api::BaseController
+      skip_before_action :authenticate_user!, only: [:index]
+
       def index
         @craft_beers = CraftBeer.all.with_attached_craft_beer_image
 
