@@ -8,9 +8,10 @@
       >
         <span>{{ index }}</span>
         <span>{{ cartItem.craftBeer?.name }}</span>
-        <button @click="increaseQuantity(index)">
+
+        <button @click="decreaseQuantity(index)">
           <Icon
-            icon="add"
+            icon="subtract"
             height="24"
             width="24"
             color="black"
@@ -19,9 +20,9 @@
 
         <span>{{ cartItem.quantity }}</span>
 
-        <button @click="decreaseQuantity(index)">
+        <button @click="increaseQuantity(index)">
           <Icon
-            icon="subtract"
+            icon="add"
             height="24"
             width="24"
             color="black"
