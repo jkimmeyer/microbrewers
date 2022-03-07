@@ -5,8 +5,8 @@ require:
 AllCops:
   Exclude:
     - db/schema.rb # Let rails do its stuff
-    - db/migrate/{2015,2016,2017,2018,2019,2020}*.rb # do not enforce rule compliance on old migrations
-    - db/migrate/20210[1-6]*.rb # do not enforce rule compliance on old migrations
+    - db/migrate/{2015,2016,2017,2018,2019,2020,2021}*.rb # do not enforce rule compliance on old migrations
+    - db/migrate/20220[1-3]*.rb # do not enforce rule compliance on old migrations
     - bin/**/* # Let gems do their stuff
     - vendor/bundle/**/* # Let gems do their stuff
     - .pryrc # Do what you want here
