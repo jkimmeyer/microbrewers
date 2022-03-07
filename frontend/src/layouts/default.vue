@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-lavenderWeb min-h-screen text-oxfordBlue">
+  <div class="bg-lavenderWeb min-h-screen text-oxfordBlue px-8">
     <Navigation />
     <slot />
   </div>

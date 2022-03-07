@@ -14,7 +14,6 @@
             icon="subtract"
             height="24"
             width="24"
-            color="black"
           />
         </button>
 
@@ -25,7 +24,6 @@
             icon="add"
             height="24"
             width="24"
-            color="black"
           />
         </button>
 
@@ -34,7 +32,6 @@
             icon="delete"
             height="24"
             width="24"
-            color="black"
           />
         </button>
       </li>

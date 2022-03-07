@@ -1,159 +1,41 @@
 <template>
-  <div class="flex">
-    <div>
+  <div>
+    <div class="mb-20">
       <h1>{{ $t('brewer.create') }}</h1>
-      <form @submit.prevent="createCraftBeer">
-        <InputField
-          v-slot="slotProps"
-          :label="$t('craftBeer.name')"
-          input-id="input-name"
-        >
-          <input
-            id="input-name"
-            v-model="craftBeer.name"
-            :class="slotProps.class"
-            required
-            type="text"
-          >
-        </InputField>
 
-        <InputField
-          v-slot="slotProps"
-          :label="$t('craftBeer.image')"
-          input-id="input-craft-beer-image"
-        >
-          <input
-            id="input-craft-beer-image"
-            :class="slotProps.class"
-            type="file"
-            @change="handleFileUpload($event)"
-          >
-        </InputField>
-
-        <InputField
-          v-slot="slotProps"
-          :label="$t('craftBeer.description')"
-          input-id="input-description"
-        >
-          <textarea
-            id="input-description"
-            v-model="craftBeer.description"
-            :class="slotProps.class"
-            type="textfield"
-          />
-        </InputField>
-
-        <InputField
-          v-slot="slotProps"
-          :label="$t('craftBeer.hops')"
-          input-id="input-hops"
-        >
-          <input
-            id="input-hops"
-            v-model="craftBeer.hop"
-            :class="slotProps.class"
-            type="text"
-          >
-        </InputField>
-
-        <InputField
-          v-slot="slotProps"
-          :label="$t('craftBeer.ibu')"
-          input-id="input-ibu"
-        >
-          <input
-            id="input-ibu"
-            v-model="craftBeer.international_bitterness_unit"
-            :class="slotProps.class"
-            type="number"
-          >
-        </InputField>
-
-        <InputField
-          v-slot="slotProps"
-          :label="$t('craftBeer.alcohol')"
-          input-id="input-vol"
-        >
-          <input
-            id="input-vol"
-            v-model="craftBeer.alcohol_volume"
-            :class="slotProps.class"
-            type="number"
-            step=".1"
-          >
-        </InputField>
-
-        <InputField
-          v-slot="slotProps"
-          :label="$t('craftBeer.price')"
-          input-id="input-price"
-        >
-          <input
-            id="input-price"
-            v-model="craftBeer.price"
-            :class="slotProps.class"
-            type="number"
-            step=".01"
-          >
-        </InputField>
-        <InputField
-          v-slot="slotProps"
-          :label="$t('craftBeer.flavor')"
-          input-id="input-flavor"
-        >
-          <input
-            id="input-flavor"
-            v-model="craftBeer.flavor"
-            :class="slotProps.class"
-            type="text"
-          >
-        </InputField>
-
-        <InputField
-          v-slot="slotProps"
-          :label="$t('craftBeer.color')"
-          input-id="input-color"
-        >
-          <input
-            id="input-color"
-            v-model="craftBeer.color"
-            :class="slotProps.class"
-            type="text"
-          >
-        </InputField>
-
-        <InputField
-          :label="$t('craftBeer.category')"
-          input-id="input-craft-beer-type"
-        >
-          <select
-            id="input-craft-beer-type"
-            v-model="craftBeer.craft_beer_type_id"
-            required
-          >
-            <option
-              v-for="craftBeerType in craftBeerTypes"
-              :key="craftBeerType.id"
-              :value="craftBeerType.id"
-            >
-              {{ craftBeerType.name }}
-            </option>
-          </select>
-        </InputField>
-
-        <div>
-          {{ errors }}
-        </div>
-
-        <button
-          type="submit"
-          @click="createCraftBeer"
-        >
-          {{ $t('brewer.addCraftBeer') }}
-        </button>
-      </form>
+      <CraftBeerForm
+        :craft-beer="craftBeer"
+        :craft-beer-types="craftBeerTypes"
+        :errors="errors"
+        @update-craft-beer="updateCraftBeer"
+        @handle-file-upload="handleFileUpload"
+      />
     </div>
-    <CraftBeerView :craft-beer="craftBeer" />
+
+    <h2 class="text-3xl font-serif mb-8">
+      {{ previewHeading }}
+    </h2>
+
+    <div v-if="craftBeerDetailView">
+      <CraftBeerDetail
+        :craft-beer="craftBeer"
+        :craft-beer-types="craftBeerTypes"
+        :preview="true"
+      />
+    </div>
+
+    <div
+      v-else
+      class="grid grid-cols-12"
+    >
+      <div class="col-span-3">
+        <CraftBeerView
+          :craft-beer="craftBeer"
+          :craft-beer-types="craftBeerTypes"
+          :preview="true"
+        />
+      </div>
+    </div>
 
     <router-link to="/craft_beers">
       {{ $t('brewer.craftBeerOverview') }}
@@ -162,9 +44,10 @@
 </template>
 
 <script>
-import CraftBeerView from '@/components/CraftBeerView.vue';
-import InputField from '@/components/Input/Field.vue';
+import CraftBeerView from '@/components/CraftBeer/View.vue';
+import CraftBeerDetail from '@/components/CraftBeer/Detail.vue';
 import Repository from '@/repositories/index';
+import CraftBeerForm from '@/components/CraftBeer/Form.vue';
 
 const CraftBeerRepository = Repository.get('craftBeer');
 const CraftBeerTypeRepository = Repository.get('craftBeerType');
@@ -173,7 +56,8 @@ export default {
   name: 'CraftBeerNew',
   components: {
     CraftBeerView,
-    InputField,
+    CraftBeerDetail,
+    CraftBeerForm,
   },
   data() {
     return {
@@ -191,7 +75,13 @@ export default {
       },
       craftBeerTypes: [],
       errors: [],
+      craftBeerDetailView: true,
     };
+  },
+  computed: {
+    previewHeading() {
+      return this.craftBeerDetailView ? this.$t('brewer.craftBeerPreviewDetail') : this.$t('brewer.craftBeerPreviewOverview');
+    },
   },
   mounted() {
     CraftBeerTypeRepository.get()
@@ -214,6 +104,9 @@ export default {
     },
     handleFileUpload(event) {
       [this.craftBeer.craft_beer_image] = event.target.files;
+    },
+    updateCraftBeer(craftBeer) {
+      this.craftBeer = craftBeer;
     },
   },
 };
