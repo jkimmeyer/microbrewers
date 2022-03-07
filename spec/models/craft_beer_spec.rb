@@ -7,4 +7,13 @@ RSpec.describe CraftBeer, type: :model do
       expect { craft_beer }.to change { CraftBeer.count }.from(0).to(1)
     end
   end
+
+  context "with empty attributes" do
+    let!(:craft_beer) { create :craft_beer }
+    subject { create :craft_beer, description: nil, price: nil, name: nil }
+
+    it "raises an error" do
+      expect { subject }.to raise_error ActiveRecord::RecordInvalid
+    end
+  end
 end

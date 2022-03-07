@@ -3,13 +3,14 @@ require "rails_helper"
 RSpec.describe Api::V1::CraftBeersController do
   describe "POST /api/v1/craft_beers/create" do
     let!(:user) { create :user }
+    let!(:craft_beer_type) { create :craft_beer_type }
 
     context "with valid attributes" do
       subject { post :create, params: craft_beer }
 
       let(:craft_beer_type) { create :craft_beer_type }
       let(:craft_beer) do
-        { craft_beer: { name: "Holunder-Bier", craft_beer_type_id: craft_beer_type.id, craft_beer_image: craft_beer_image } }
+        { craft_beer: { name: "Holunder-Bier", price: 2.99, description: "Description", craft_beer_type: craft_beer_type.id, craft_beer_type_id: craft_beer_type.id, craft_beer_image: craft_beer_image } }
       end
 
       let(:craft_beer_image) { fixture_file_upload("brut-ale.png") }
@@ -64,7 +65,7 @@ RSpec.describe Api::V1::CraftBeersController do
 
       it "returns errors" do
         subject
-        expect(response.body).to eq({ errors: { craft_beer_type: ["must exist"] } }.to_json)
+        expect(response.body).to eq({ errors: { craft_beer_type: ["must exist", "can't be blank"], price: ["can't be blank"], description: ["can't be blank"] } }.to_json)
       end
 
       it "creates no beer" do

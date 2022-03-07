@@ -31,6 +31,10 @@ RSpec.configure do |config|
   config.order = :random
   Kernel.srand config.seed
 
+  config.before(:each) do
+    Faker::Beer.unique.clear
+  end
+
   # On the CI server, print the rails log of each failed test, since we cannot
   # access them otherwise.
   if ENV["CI"]

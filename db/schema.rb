@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_07_091838) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_07_092637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,23 +53,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_07_091838) do
   end
 
   create_table "craft_beer_types", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "craft_beers", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
+    t.string "name", null: false
+    t.string "description", null: false
     t.integer "international_bitterness_unit"
     t.decimal "alcohol_volume"
-    t.decimal "price"
+    t.decimal "price", null: false
     t.string "flavors"
     t.string "color"
     t.string "hops"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "craft_beer_type_id"
+    t.decimal "original_wort"
     t.index ["craft_beer_type_id"], name: "index_craft_beers_on_craft_beer_type_id"
   end
 
@@ -90,7 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_07_091838) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "email"
+    t.string "email", null: false
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

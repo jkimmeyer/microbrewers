@@ -7,4 +7,5 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
   belongs_to :account, polymorphic: true, optional: true
+  validates_presence_of :email
 end
