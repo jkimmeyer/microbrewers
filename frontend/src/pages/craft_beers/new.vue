@@ -8,6 +8,8 @@
       <CraftBeerForm
         :craft-beer="craftBeer"
         :craft-beer-types="craftBeerTypes"
+        :hops-list="hops"
+        :flavors-list="flavors"
         :errors="errors"
         @update-craft-beer="updateCraftBeer"
         @handle-file-upload="handleFileUpload"
@@ -57,6 +59,8 @@ import CraftBeerForm from '@/components/CraftBeer/Form.vue';
 
 const CraftBeerRepository = Repository.get('craftBeer');
 const CraftBeerTypeRepository = Repository.get('craftBeerType');
+const HopsRepository = Repository.get('hops');
+const FlavorsRepository = Repository.get('flavors');
 
 export default {
   name: 'CraftBeerNew',
@@ -80,6 +84,8 @@ export default {
         craft_beer_type_id: null,
       },
       craftBeerTypes: [],
+      hops: [],
+      flavors: [],
       errors: [],
       craftBeerDetailView: true,
     };
@@ -93,6 +99,16 @@ export default {
     CraftBeerTypeRepository.get()
       .then((response) => {
         this.craftBeerTypes = response.data;
+      });
+
+    HopsRepository.get()
+      .then((response) => {
+        this.hops = response.data;
+      });
+
+    FlavorsRepository.get()
+      .then((response) => {
+        this.flavors = response.data;
       });
   },
   methods: {

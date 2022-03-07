@@ -2,9 +2,7 @@ describe('Create a CraftBeer', () => {
   beforeEach(() => {
     cy.loginViaAPI('Brewery');
     cy.validateToken('Brewery');
-  });
 
-  it('displays the page', () => {
     cy.intercept(
       'GET',
       '/api/v1/craft_beer_types',
@@ -16,6 +14,30 @@ describe('Create a CraftBeer', () => {
       },
     );
 
+    cy.intercept(
+      'GET',
+      '/api/v1/hops',
+      {
+        body: [
+          'Citra',
+          'Hallertauer Premium',
+        ],
+      },
+    );
+
+    cy.intercept(
+      'GET',
+      '/api/v1/flavors',
+      {
+        body: [
+          'würzig',
+          'süß',
+        ],
+      },
+    );
+  });
+
+  it('displays the page', () => {
     cy.visit('/craft_beers/new');
     cy.contains('Erstelle ein neues Craft Bier!');
     cy.contains('Craft-Bier speichern');
@@ -24,17 +46,6 @@ describe('Create a CraftBeer', () => {
 
   context('with valid data', () => {
     it('updates the preview', () => {
-      cy.intercept(
-        'GET',
-        '/api/v1/craft_beer_types',
-        {
-          body: [
-            { id: 1, name: 'Stout' },
-            { id: 2, name: 'Belgian And French Ale' },
-          ],
-        },
-      );
-
       cy.visit('/craft_beers/new');
       cy.get('#input-name').type('Brewer\'s Summer Ale');
       cy.get('[data-preview]').contains('Brewer\'s Summer Ale');
@@ -51,10 +62,10 @@ describe('Create a CraftBeer', () => {
       cy.get('#input-vol').type(5.3);
       cy.get('[data-preview]').contains(5.3);
 
-      cy.get('#input-craft-beer-type').select('Stout');
+      cy.get('#input-craft-beer-type').click().type('Stout{enter}');
       cy.get('[data-preview]').contains('Stout');
 
-      cy.get('#input-hops').type('Citra');
+      cy.get('#input-hops').click().type('Citra{enter}');
       cy.get('[data-preview]').contains('Citra');
 
       cy.get('#input-craft-beer-image')
