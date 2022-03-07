@@ -31,6 +31,7 @@ const getLoginResponse = (email, id, accountType, accountId) => ({
     client: 'client',
   },
   body: {
+    success: true,
     data: {
       email,
       provider: 'email',
