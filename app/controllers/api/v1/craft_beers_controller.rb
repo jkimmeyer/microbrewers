@@ -29,10 +29,10 @@ module Api
           :international_bitterness_unit,
           :alcohol_volume,
           :price,
-          :flavor,
           :color,
-          :hop,
           :craft_beer_type_id,
+          flavors: [],
+          hops: [],
         )
       end
 

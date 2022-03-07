@@ -1,16 +1,16 @@
 FactoryBot.define do
   factory :craft_beer do
     association :craft_beer_type
-    name { Faker::Beer.brand }
+    name { Faker::Beer.unique.brand }
+    price { 2.99 }
+    description { "Ein schönes Hochweizen aus der Winter-Saison" }
 
     trait(:with_all_information) do
-      price { 2.99 }
-      description { "Ein schönes Hochweizen aus der Winter-Saison" }
-      hop { Faker::Beer.hop }
+      hops { [Hop.new(name: Hop.all.sample)] }
       alcohol_volume { Faker::Beer.alcohol }
       international_bitterness_unit { 58 }
       color { "golden" }
-      flavor { "orange, banana, radler" }
+      flavors { [Flavor.new(name: Flavor.all.sample)] }
     end
 
     trait(:with_image) do
