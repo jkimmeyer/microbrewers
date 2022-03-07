@@ -5,6 +5,17 @@ describe('Create a CraftBeer', () => {
   });
 
   it('displays the page', () => {
+    cy.intercept(
+      'GET',
+      '/api/v1/craft_beer_types',
+      {
+        body: [
+          { id: 1, name: 'Stout' },
+          { id: 2, name: 'Belgian And French Ale' },
+        ],
+      },
+    );
+
     cy.visit('/craft_beers/new');
     cy.contains('Erstelle ein neues Craft Bier!');
     cy.contains('Craft-Bier speichern');
