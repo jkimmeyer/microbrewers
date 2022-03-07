@@ -87,7 +87,7 @@ RSpec.describe Api::V1::CraftBeersController do
 
       it "returns errors" do
         subject
-        expect(response.body).to eq({ errors: { craft_beer_type: ["must exist", "can't be blank"], price: ["can't be blank"], description: ["can't be blank"] } }.to_json)
+        expect(response.body).to eq({ errors: { craft_beer_type: ["must exist"], price: ["can't be blank"], description: ["can't be blank"] } }.to_json)
       end
 
       it "creates no beer" do

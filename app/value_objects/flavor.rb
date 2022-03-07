@@ -2,11 +2,8 @@ class Flavor
   attr_reader :name
 
   def initialize(name:)
-    if Flavor.all.include?(name)
-      @name = name
-    else
-      raise StandardError, "Flavor #{name} does not exist."
-    end
+    raise StandardError, "Flavor #{name} does not exist." unless Flavor.all.include?(name)
+    @name = name
   end
 
   def self.all

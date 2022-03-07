@@ -2,11 +2,8 @@ class Hop
   attr_reader :name
 
   def initialize(name:)
-    if Hop.all.include?(name)
-      @name = name
-    else
-      raise StandardError, "Hop #{name} does not exist."
-    end
+    raise StandardError, "Hop #{name} does not exist." unless Hop.all.include?(name)
+    @name = name
   end
 
   def self.all
