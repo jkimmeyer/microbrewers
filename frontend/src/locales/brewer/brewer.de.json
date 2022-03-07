@@ -1,5 +1,8 @@
 {
   "create": "Erstelle ein neues Craft Bier!",
-  "addCraftBeer": "Craft Bier hinzufügen",
-  "craftBeerOverview": "Zurück zur Übersicht"
+  "addCraftBeer": "Craft-Bier hinzufügen",
+  "craftBeerOverview": "Zurück zur Übersicht",
+  "craftBeerPreviewDetail": "Vorschau - Detailansicht",
+  "craftBeerPreviewOverview": "Vorschau - Übersicht",
+  "saveCraftBeer": "Craft-Bier speichern"
 }

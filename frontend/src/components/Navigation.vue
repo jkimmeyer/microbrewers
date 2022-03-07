@@ -8,18 +8,18 @@
     </h1>
     <ul class="flex items-center space-x-8">
       <NavigationItem
-        :navigation-text="$t('navigation.shop')"
-        navigation-link="/shop"
+        :navigation-text="$t('navigation.craftBeers')"
+        navigation-link="/craft_beers"
       />
       <NavigationItem
         :navigation-text="$t('navigation.brewers')"
         navigation-link="/brewers"
       />
+      <NavigationItem
+        :navigation-text="$t('navigation.cart')"
+        navigation-link="/cart"
+      />
       <template v-if="loggedIn">
-        <NavigationItem
-          :navigation-text="$t('navigation.profile')"
-          navigation-link="/users/profile"
-        />
         <NavigationItem
           :navigation-text="$t('navigation.logout')"
           @click="userLogout()"

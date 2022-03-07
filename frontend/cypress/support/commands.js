@@ -23,6 +23,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import 'cypress-file-upload';
 
 const getLoginResponse = (email, id, accountType, accountId) => ({
   headers: {
@@ -31,6 +32,7 @@ const getLoginResponse = (email, id, accountType, accountId) => ({
     client: 'client',
   },
   body: {
+    success: true,
     data: {
       email,
       provider: 'email',

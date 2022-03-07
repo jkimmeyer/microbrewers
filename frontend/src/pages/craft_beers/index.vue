@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import CraftBeerView from '@/components/CraftBeerView.vue';
+import CraftBeerView from '@/components/CraftBeer/View.vue';
 import Repository from '@/repositories/index';
 
 const CraftBeerRepository = Repository.get('craftBeer');

@@ -15,7 +15,17 @@ module.exports = {
       sans: ['Darker Grotesque', 'sans-serif'],
       serif: ['Supermercado One', 'serif'],
     },
-    extend: {},
+    extend: {
+      blur: {
+        '4xl': '100px',
+      },
+      borderRadius: {
+        '4xl': '48px',
+      },
+      width: {
+        320: '320px',
+      },
+    },
   },
   plugins: [],
 };

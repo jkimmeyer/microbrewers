@@ -4,9 +4,10 @@
   "name": "Name",
   "image": "Bild vom Craft Bier",
   "description": "Beschreibung",
-  "ibu": "Internation Bitterness Unit",
-  "flavor": "Geschmacksrichtung",
+  "ibu": "International Bitterness Unit",
+  "flavors": "Geschmacksrichtung",
   "color": "Farbe",
   "category": "Kategorie",
-  "price": "Preis"
+  "price": "Preis",
+  "originalWort": "Stammwürze"
 }

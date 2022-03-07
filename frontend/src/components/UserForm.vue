@@ -58,7 +58,6 @@
       <button
         class="py-2 px-4 bg-saffron rounded-lg font-bold"
         type="submit"
-        @click="$emit('handleSubmit', user)"
       >
         {{ $t('navigation.continue') }}
       </button>

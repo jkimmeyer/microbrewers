@@ -120,7 +120,7 @@ RSpec.describe Api::V1::CraftBeersController do
       it "returns two craft beers" do
         subject
         expect(JSON.parse(response.body).size).to eq 2
-        expect(response.body).to eq(craft_beers.map { |craft_beer| craft_beer.attributes.merge(image_url: nil) }.to_json)
+        expect(response.body).to eq(craft_beers.map { |craft_beer| craft_beer.attributes.merge(craft_beer_image: nil) }.to_json)
       end
     end
 
@@ -129,7 +129,7 @@ RSpec.describe Api::V1::CraftBeersController do
 
       it "contains an attachment url" do
         subject
-        expect(JSON.parse(response.body)[0]["image_url"]).not_to be nil
+        expect(JSON.parse(response.body)[0]["craft_beer_image"]).not_to be nil
       end
     end
   end
