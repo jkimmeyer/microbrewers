@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="mb-20">
-      <h1>{{ $t('brewer.create') }}</h1>
+      <h2 class="text-3xl font-serif mb-8">
+        {{ $t('brewer.create') }}
+      </h2>
 
       <CraftBeerForm
         :craft-beer="craftBeer"
@@ -16,7 +18,10 @@
       {{ previewHeading }}
     </h2>
 
-    <div v-if="craftBeerDetailView">
+    <div
+      v-if="craftBeerDetailView"
+      data-preview
+    >
       <CraftBeerDetail
         :craft-beer="craftBeer"
         :craft-beer-types="craftBeerTypes"
@@ -27,6 +32,7 @@
     <div
       v-else
       class="grid grid-cols-12"
+      data-preview
     >
       <div class="col-span-3">
         <CraftBeerView
@@ -64,12 +70,12 @@ export default {
       craftBeer: {
         name: null,
         description: null,
-        hop: null,
+        hops: null,
         craft_beer_image: null,
-        international_bitternes_unit: null,
+        international_bitterness_unit: null,
         alcohol_volume: null,
         price: null,
-        flavor: null,
+        flavors: null,
         color: null,
         craft_beer_type_id: null,
       },

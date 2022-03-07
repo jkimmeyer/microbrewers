@@ -5,9 +5,9 @@
   "image": "Bild vom Craft Bier",
   "description": "Beschreibung",
   "ibu": "International Bitterness Unit",
-  "flavor": "Geschmacksrichtung",
+  "flavors": "Geschmacksrichtung",
   "color": "Farbe",
   "category": "Kategorie",
   "price": "Preis",
-  "originalGravity": "Stammwürze"
+  "originalWort": "Stammwürze"
 }

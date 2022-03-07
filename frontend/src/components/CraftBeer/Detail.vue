@@ -3,7 +3,7 @@
     <div class="col-span-6">
       <div class="mb-16">
         <div class="leading-none">
-          {{ craftBeerTypes[craftBeer.craft_beer_type_id]?.name || 'Kategorie' }}
+          {{ craftBeerTypeName || 'Kategorie' }}
         </div>
         <div class="text-4xl leading-none font-bold">
           {{ craftBeer.name || 'Biername' }}
@@ -35,10 +35,10 @@
       <dl class="grid grid-cols-12 gap-x-8 mb-8">
         <dt class="col-span-6 flex items-center space-x-4 text-2xl">
           <Icon icon="question-circle" />
-          <span class="mb-1">{{ $t('craftBeer.originalGravity') }}</span>
+          <span class="mb-1">{{ $t('craftBeer.originalWort') }}</span>
         </dt>
         <dd class="col-span-6 text-2xl">
-          {{ craftBeer.originalGravity || '12' }} %
+          {{ craftBeer.originalWort || '12' }} %
         </dd>
 
         <dt class="col-span-6 flex items-center space-x-4 text-2xl">
@@ -70,7 +70,7 @@
           <span class="mb-1">{{ $t('craftBeer.hops') }}</span>
         </dt>
         <dd class="col-span-6 text-2xl">
-          {{ craftBeer.hop || 'Hallertauer' }}
+          {{ craftBeer.hops || 'Hallertauer' }}
         </dd>
       </dl>
 
@@ -127,6 +127,12 @@ export default {
     return {
       imageUrl: new URL('../../assets/placeholder_beer.png', import.meta.url),
     };
+  },
+  computed: {
+    craftBeerTypeName() {
+      return this.craftBeerTypes
+        .find((craftBeerType) => craftBeerType.id === this.craftBeer.craft_beer_type_id)?.name;
+    },
   },
   watch: {
     // eslint-disable-next-line func-names

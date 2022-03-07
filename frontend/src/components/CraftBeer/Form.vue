@@ -33,12 +33,12 @@
 
       <InputField
         v-slot="slotProps"
-        :label="$t('craftBeer.flavor')"
-        input-id="input-flavor"
+        :label="$t('craftBeer.flavors')"
+        input-id="input-flavors"
       >
         <input
-          id="input-flavor"
-          v-model="flavor"
+          id="input-flavors"
+          v-model="flavors"
           :class="slotProps.class"
           type="text"
         >
@@ -51,7 +51,7 @@
       >
         <input
           id="input-hops"
-          v-model="hop"
+          v-model="hops"
           :class="slotProps.class"
           type="text"
         >
@@ -68,6 +68,9 @@
           :class="slotProps.class"
           required
         >
+          <option value="">
+            -- Bitte wählen --
+          </option>
           <option
             v-for="craftBeerType in craftBeerTypes"
             :key="craftBeerType.id"
@@ -185,12 +188,12 @@ export default {
     return {
       name: this.craftBeer.name,
       description: this.craftBeer.description,
-      hop: this.craftBeer.hop,
+      hops: this.craftBeer.hops,
       craft_beer_image: this.craftBeer.craft_beer_image,
-      international_bitternes_unit: this.craftBeer.international_bitternes_unit,
+      international_bitterness_unit: this.craftBeer.international_bitterness_unit,
       alcohol_volume: this.craftBeer.alcohol_volume,
       price: this.craftBeer.price,
-      flavor: this.craftBeer.flavor,
+      flavors: this.craftBeer.flavors,
       color: this.craftBeer.color,
       craft_beer_type_id: this.craftBeer.craft_beer_type_id,
     };
