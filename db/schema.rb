@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_07_092637) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_07_105648) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,13 +64,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_07_092637) do
     t.integer "international_bitterness_unit"
     t.decimal "alcohol_volume"
     t.decimal "price", null: false
-    t.string "flavors"
     t.string "color"
-    t.string "hops"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "craft_beer_type_id"
     t.decimal "original_wort"
+    t.json "hops_data"
+    t.json "flavors_data"
     t.index ["craft_beer_type_id"], name: "index_craft_beers_on_craft_beer_type_id"
   end
 

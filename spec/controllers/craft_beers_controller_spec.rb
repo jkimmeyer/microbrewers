@@ -49,6 +49,28 @@ RSpec.describe Api::V1::CraftBeersController do
         it "creates a blob " do
           expect { subject }.to change { ActiveStorage::Blob.count }.from(0).to(1)
         end
+
+        context "with flavors and hops" do
+          let(:craft_beer) do
+            { craft_beer: { name: "Holunder-Bier", price: 2.99, description: "Description", craft_beer_type: craft_beer_type.id, craft_beer_type_id: craft_beer_type.id, craft_beer_image: craft_beer_image, flavors: Flavor.all.sample(2), hops: Hop.all.sample(2) } }
+          end
+
+          it "creates a craft beer" do
+            expect { subject }.to change { CraftBeer.count }.from(0).to(1)
+          end
+
+          it "populates flavors" do
+            subject
+            expect(CraftBeer.first.flavors).to be_an Array
+            expect(CraftBeer.first.flavors).to all(be_an Flavor)
+          end
+
+          it "populates hops" do
+            subject
+            expect(CraftBeer.first.hops).to be_an Array
+            expect(CraftBeer.first.hops).to all(be_an Hop)
+          end
+        end
       end
     end
 
