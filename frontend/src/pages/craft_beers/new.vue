@@ -11,6 +11,7 @@
         :hops-list="hops"
         :flavors-list="flavors"
         :errors="errors"
+        @create-craft-beer="createCraftBeer"
         @update-craft-beer="updateCraftBeer"
         @handle-file-upload="handleFileUpload"
       />

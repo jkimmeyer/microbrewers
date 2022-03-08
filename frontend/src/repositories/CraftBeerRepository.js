@@ -8,6 +8,8 @@ const headers = {
   },
 };
 
+const ARRAY_KEYS = ['flavors', 'hops'];
+
 export default {
   get() {
     return Client.get(`${resource}`);
@@ -20,7 +22,15 @@ export default {
     const craftBeer = removeEmpty(payload);
 
     Object.keys(craftBeer).forEach((key) => {
-      formData.append(`craft_beer[${key}]`, craftBeer[key]);
+      const value = craftBeer[key];
+
+      if (ARRAY_KEYS.includes(key)) {
+        for (let i = 0; i < value.length; i += 1) {
+          formData.append(`craft_beer[${key}]`, value[i]);
+        }
+      } else {
+        formData.append(`craft_beer[${key}]`, value);
+      }
     });
 
     return Client.post(`${resource}`, formData, headers);

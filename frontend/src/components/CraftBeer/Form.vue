@@ -1,7 +1,7 @@
 <template>
   <form
     class="grid grid-cols-12 gap-8"
-    @submit.prevent="$emit('createCraftBeer', craftBeer)"
+    @submit.prevent="$emit('createCraftBeer')"
   >
     <div class="col-span-3">
       <InputField
