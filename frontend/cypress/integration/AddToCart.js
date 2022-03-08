@@ -12,6 +12,17 @@ describe('Craft Beer Index', () => {
       );
     });
 
+    cy.intercept(
+      'GET',
+      '/api/v1/craft_beer_types',
+      {
+        body: [
+          { id: 1, name: 'Stout' },
+          { id: 2, name: 'Belgian And French Ale' },
+        ],
+      },
+    );
+
     cy.intercept('https://api.mapbox.com/**/*');
     cy.intercept('https://events.mapbox.com/**/*');
   });
