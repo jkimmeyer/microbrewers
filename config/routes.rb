@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :craft_beer_types, only: %w[index]
       resources :hops, only: %w[index]
       resources :flavors, only: %w[index]
+      resources :breweries, only: %w[index]
     end
   end
 end
