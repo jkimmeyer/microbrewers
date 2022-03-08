@@ -9,13 +9,15 @@ if (savedCart) {
 }
 
 export const useCart = () => {
-  const addToCart = (craftBeer, quantity = 1) => {
-    const item = cart.value.find((cartItem) => cartItem.craftBeer.id === craftBeer.id);
+  const addToCart = (product, quantity = 1, type = 'CraftBeer') => {
+    const item = cart.value
+      .filter((cartItem) => cartItem.type === type)
+      .find((cartItem) => cartItem.product.id === product.id);
 
     if (item != null) {
       item.quantity += quantity;
     } else {
-      cart.value.push({ craftBeer, quantity });
+      cart.value.push({ type, product, quantity });
     }
 
     window.localStorage.setItem('CART', JSON.stringify(cart.value));

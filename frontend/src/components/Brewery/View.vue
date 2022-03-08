@@ -15,25 +15,26 @@
       <VButton
         button-type="button"
         class="w-full"
+        @click="$emit('support-brewery', brewery)"
       >
         Unterstützen
       </VButton>
-      <NuxtLink
+      <RouterLink
         to="#"
         class="text-limeGreen block text-right"
       >
         Zu den Bieren
-      </NuxtLink>
+      </RouterLink>
     </div>
 
     <div class="col-span-1">
       {{ brewery.description }}
-      <NuxtLink
+      <RouterLink
         to="#"
         class="text-limeGreen block text-right"
       >
         Mehr erfahren
-      </NuxtLink>
+      </RouterLink>
     </div>
   </div>
 </template>

@@ -11,6 +11,7 @@
         >
           <BreweryView
             :brewery="brewery"
+            @support-brewery="supportBrewery"
           />
         </div>
       </div>
@@ -21,12 +22,20 @@
 import BreweryView from '@/components/Brewery/View.vue';
 import Map from '@/components/Map.vue';
 import Repository from '@/repositories/index';
+import { useCart } from '@/composables/useCart';
 
 const BreweryRepository = Repository.get('brewery');
 export default {
   components: {
     BreweryView,
     Map,
+  },
+  setup() {
+    const { addToCart } = useCart();
+
+    return {
+      addToCart,
+    };
   },
   data() {
     return {
@@ -38,6 +47,11 @@ export default {
       .then((response) => {
         this.breweries = response.data;
       });
+  },
+  methods: {
+    supportBrewery(brewery) {
+      this.addToCart(brewery, 1, 'brewery');
+    },
   },
 };
 </script>
