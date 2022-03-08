@@ -1,5 +1,8 @@
 <template>
-  <div class="p-8 flex flex-col justify-center items-center">
+  <div
+    data-craft-beer
+    class="p-8 flex flex-col justify-center items-center"
+  >
     <div class="relative z-10 h-320 w-320 flex items-center justify-center">
       <img
         v-if="imageUrl"
