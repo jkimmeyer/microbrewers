@@ -1,7 +1,7 @@
 <template>
   <form
     class="grid grid-cols-12 gap-8"
-    @submit.prevent="$emit('createCraftBeer', craftBeer)"
+    @submit.prevent="$emit('createCraftBeer')"
   >
     <div class="col-span-3">
       <InputField
@@ -32,53 +32,44 @@
       </InputField>
 
       <InputField
-        v-slot="slotProps"
         :label="$t('craftBeer.flavors')"
         input-id="input-flavors"
       >
-        <input
+        <Multiselect
           id="input-flavors"
           v-model="flavors"
-          :class="slotProps.class"
-          type="text"
-        >
+          mode="tags"
+          max="2"
+          :searchable="true"
+          :options="flavorsList"
+        />
       </InputField>
 
       <InputField
-        v-slot="slotProps"
         :label="$t('craftBeer.hops')"
         input-id="input-hops"
       >
-        <input
+        <Multiselect
           id="input-hops"
           v-model="hops"
-          :class="slotProps.class"
-          type="text"
-        >
+          mode="tags"
+          :searchable="true"
+          :options="hopsList"
+        />
       </InputField>
 
       <InputField
-        v-slot="slotProps"
         :label="$t('craftBeer.category')"
         input-id="input-craft-beer-type"
       >
-        <select
+        <Multiselect
           id="input-craft-beer-type"
           v-model="craft_beer_type_id"
-          :class="slotProps.class"
-          required
-        >
-          <option value="">
-            -- Bitte wählen --
-          </option>
-          <option
-            v-for="craftBeerType in craftBeerTypes"
-            :key="craftBeerType.id"
-            :value="craftBeerType.id"
-          >
-            {{ craftBeerType.name }}
-          </option>
-        </select>
+          :searchable="true"
+          value-prop="id"
+          label="name"
+          :options="craftBeerTypes"
+        />
       </InputField>
     </div>
 
@@ -168,10 +159,13 @@ import Icon from '@/components/Icon.vue';
 import InputField from '@/components/Input/Field.vue';
 import VButton from '@/components/VButton.vue';
 
+import Multiselect from '@vueform/multiselect';
+
 export default {
   components: {
     Icon,
     InputField,
+    Multiselect,
     VButton,
   },
   props: {
@@ -180,6 +174,14 @@ export default {
       required: true,
     },
     craftBeerTypes: {
+      type: Array,
+      required: true,
+    },
+    hopsList: {
+      type: Array,
+      required: true,
+    },
+    flavorsList: {
       type: Array,
       required: true,
     },
@@ -198,6 +200,12 @@ export default {
       craft_beer_type_id: this.craftBeer.craft_beer_type_id,
     };
   },
+  computed: {
+    mappedCraftBeerTypes() {
+      return this.craftBeerTypes
+        .map((craftBeerType) => ({ value: craftBeerType.id, label: craftBeerType.name }));
+    },
+  },
   watch: {
     $data: {
       handler() {
@@ -208,3 +216,59 @@ export default {
   },
 };
 </script>
+
+<style src="@vueform/multiselect/themes/default.css"></style>
+<style>
+:root {
+  --ms-bg-disabled: rgb(243, 244, 246);
+  --ms-border-color: rgb(255, 255, 255);
+  --ms-border-width: 1px;
+  --ms-radius: 8px;
+  --ms-py: 0.5rem;
+  --ms-px: 0.875rem;
+  --ms-ring-width: 1px;
+  --ms-ring-color: rgb(16, 25, 53);
+  --ms-placeholder-color: rgb(156, 163, 175);
+  --ms-max-height: 10rem;
+  --ms-spinner-color: rgb(16, 185, 129);
+  --ms-caret-color: rgb(16, 25, 53);
+  --ms-clear-color: rgb(16, 25, 53);
+  --ms-clear-color-hover: rgb(0, 0, 0);
+  --ms-tag-font-size: 0.875rem;
+  --ms-tag-line-height: 1.25rem;
+  --ms-tag-font-weight: 600;
+  --ms-tag-bg: rgb(16, 25, 53);
+  --ms-tag-bg-disabled: rgb(156, 163, 175);
+  --ms-tag-color: rgb(248, 198, 48);
+  --ms-tag-color-disabled: rgb(255, 255, 255);
+  --ms-tag-radius: 16px;
+  --ms-tag-py: 0.25rem;
+  --ms-tag-px: 0.5rem;
+  --ms-tag-my: 0.25rem;
+  --ms-tag-mx: 0.25rem;
+  --ms-tag-remove-radius: 4px;
+  --ms-tag-remove-py: 0.25rem;
+  --ms-tag-remove-px: 0.25rem;
+  --ms-tag-remove-my: 0;
+  --ms-tag-remove-mx: 0.125rem;
+  --ms-dropdown-bg: rgb(255, 255, 255);
+  --ms-dropdown-border-color: rgb(209, 213, 219);
+  --ms-dropdown-border-width: 1px;
+  --ms-dropdown-radius: 4px;
+  --ms-option-font-size: 1rem;
+  --ms-option-line-height: 1.375;
+  --ms-option-bg-pointed: rgb(16, 25, 53);
+  --ms-option-color-pointed: rgb(248, 198, 48);
+  --ms-option-bg-selected: rgb(16, 25, 53);
+  --ms-option-color-selected: rgb(248, 198, 48);
+  --ms-option-bg-disabled: rgb(255, 255, 255);
+  --ms-option-color-disabled: rgb(209, 213, 219);
+  --ms-option-bg-selected-pointed: rgb(16, 25, 53);
+  --ms-option-color-selected-pointed: rgb(255, 255, 255);
+  --ms-option-bg-selected-disabled: rgb(255, 255, 255);
+  --ms-option-color-selected-disabled: rgb(209, 250, 229);
+  --ms-option-py: 0.5rem;
+  --ms-option-px: 0.75rem;
+  --ms-empty-color: rgb(75, 85, 99);
+}
+</style>

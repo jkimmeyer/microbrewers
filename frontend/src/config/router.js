@@ -9,6 +9,7 @@ import ServerError from '@/pages/500.vue';
 import UsersLogin from '@/pages/users/login.vue';
 import UsersRegistration from '@/pages/users/registration.vue';
 import UsersDashboard from '@/pages/users/dashboard.vue';
+import UsersCraftBeers from '@/pages/users/craft_beers.vue';
 import Cart from '@/pages/cart.vue';
 
 import { useAuth } from '@/composables/useAuth';
@@ -30,6 +31,7 @@ const userRoutes = [
 
 const brewerRoutes = [
   { path: '/craft_beers/new', component: CraftBeersNew },
+  { path: '/users/craft_beers', component: UsersCraftBeers },
 ];
 
 const customerRoutes = [

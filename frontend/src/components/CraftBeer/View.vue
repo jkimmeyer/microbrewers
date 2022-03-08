@@ -1,9 +1,12 @@
 <template>
-  <div class="p-8 flex flex-col justify-center items-center">
-    <div class="relative z-10 w-320 flex items-center justify-center">
+  <div
+    data-craft-beer
+    class="p-8 flex flex-col justify-center items-center"
+  >
+    <div class="relative z-10 h-320 w-320 flex items-center justify-center">
       <img
         v-if="imageUrl"
-        class="text-center"
+        class="text-center h-320 max-w-320"
         :src="imageUrl"
       >
       <div class="absolute bg-saffron top-24 -bottom-8 left-8 right-8 -z-10 rounded-4xl blur-2xl" />
@@ -12,7 +15,7 @@
     <div class="w-full relative z-20">
       <div class="mb-2">
         <div class="leading-none">
-          {{ craftBeerTypes[craftBeer.craft_beer_type_id]?.name || 'Kategorie' }}
+          {{ craftBeerTypeName || 'Kategorie' }}
         </div>
 
         <div class="text-4xl leading-none font-bold">
@@ -31,15 +34,13 @@
 
       <AddToCart
         v-if="!preview"
-        @add-to-cart="$emit('addToCart', craftBeer, amount)"
+        @add-to-cart="handleAddToCart"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { useCart } from '@/composables/useCart';
-
 import AddToCart from '@/components/AddToCart.vue';
 
 export default {
@@ -64,19 +65,26 @@ export default {
       default: false,
     },
   },
-  setup() {
-    const { addToCart } = useCart();
-    return { addToCart };
-  },
   data() {
     return {
-      imageUrl: new URL('../../assets/placeholder_beer.png', import.meta.url),
+      imageUrl: this.craftBeer.craft_beer_image || new URL('../../assets/placeholder_beer.png', import.meta.url),
     };
+  },
+  computed: {
+    craftBeerTypeName() {
+      return this.craftBeerTypes
+        .find((craftBeerType) => craftBeerType.id === this.craftBeer.craft_beer_type_id)?.name;
+    },
   },
   watch: {
     // eslint-disable-next-line func-names
     'craftBeer.craft_beer_image': function () {
       this.imageUrl = URL.createObjectURL(this.craftBeer.craft_beer_image);
+    },
+  },
+  methods: {
+    handleAddToCart(amount) {
+      this.$emit('addToCart', this.craftBeer, amount);
     },
   },
 };

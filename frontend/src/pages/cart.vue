@@ -9,7 +9,10 @@
         <span>{{ index }}</span>
         <span>{{ cartItem.craftBeer?.name }}</span>
 
-        <button @click="decreaseQuantity(index)">
+        <button
+          :aria-label="$t('cart.decrease')"
+          @click="decreaseQuantity(index)"
+        >
           <Icon
             icon="subtract"
             height="24"
@@ -19,7 +22,10 @@
 
         <span>{{ cartItem.quantity }}</span>
 
-        <button @click="increaseQuantity(index)">
+        <button
+          :aria-label="$t('cart.increase')"
+          @click="increaseQuantity(index)"
+        >
           <Icon
             icon="add"
             height="24"
@@ -27,7 +33,10 @@
           />
         </button>
 
-        <button @click="removeFromCart(index)">
+        <button
+          :aria-label="$t('cart.remove')"
+          @click="removeFromCart(index)"
+        >
           <Icon
             icon="delete"
             height="24"

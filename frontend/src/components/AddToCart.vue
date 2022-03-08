@@ -1,10 +1,11 @@
 <template>
-  <div class="space-x-2">
+  <div class="flex justify-between">
     <div
       class="bg-white inline-flex py-2 px-2 rounded-xl text-2xl font-bold
                items-center space-x-2 border-oxfordBlue border-2"
     >
       <button
+        :aria-label="$t('cart.decrease')"
         :disabled="amount <= 0"
         class="disabled:opacity-25"
         @click="amount--"
@@ -23,6 +24,7 @@
         max="99"
       >
       <button
+        :aria-label="$t('cart.increase')"
         :disabled="amount >= 99"
         class="disabled:opacity-25"
         @click="amount++"
@@ -35,7 +37,8 @@
       </button>
     </div>
     <button
-      class="p-2 bg-saffron rounded-xl"
+      :aria-label="$t('cart.add')"
+      class="p-2 bg-saffron rounded-xl ml-auto"
       @click="$emit('add-to-cart', amount)"
     >
       <Icon

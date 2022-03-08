@@ -1,0 +1,74 @@
+[
+  {
+    "id": 2,
+    "name": "Birra Moretti",
+    "description": "Ein schönes Hochweizen aus der Winter-Saison",
+    "international_bitterness_unit": 58,
+    "alcohol_volume": "6.0",
+    "price": "2.99",
+    "color": "golden",
+    "created_at": "2022-03-07T11: 13: 29.577Z",
+    "updated_at": "2022-03-07T11: 13: 29.577Z",
+    "craft_beer_type_id": 2,
+    "original_wort": null,
+    "hops_data": [
+      {
+        "name": "Nugget"
+      }
+    ],
+    "flavors_data": [
+      {
+        "name": "Kokos"
+      }
+    ],
+    "craft_beer_image": null
+  },
+  {
+    "id": 3,
+    "name": "Coors lite",
+    "description": "Ein schönes Hochweizen aus der Winter-Saison",
+    "international_bitterness_unit": 58,
+    "alcohol_volume": "5.4",
+    "price": "2.99",
+    "color": "golden",
+    "created_at": "2022-03-07T11: 13: 29.579Z",
+    "updated_at": "2022-03-07T11: 13: 29.579Z",
+    "craft_beer_type_id": 3,
+    "original_wort": null,
+    "hops_data": [
+      {
+        "name": "Apollo"
+      }
+    ],
+    "flavors_data": [
+      {
+        "name": "Koriander"
+      }
+    ],
+    "craft_beer_image": null
+  },
+  {
+    "id": 4,
+    "name": "Budweiser",
+    "description": "Ein schönes Hochweizen aus der Winter-Saison",
+    "international_bitterness_unit": 58,
+    "alcohol_volume": "9.6",
+    "price": "2.99",
+    "color": "golden",
+    "created_at": "2022-03-07T11: 13: 29.581Z",
+    "updated_at": "2022-03-07T11: 13: 29.581Z",
+    "craft_beer_type_id": 4,
+    "original_wort": null,
+    "hops_data": [
+      {
+        "name": "Amarillo"
+      }
+    ],
+    "flavors_data": [
+      {
+        "name": "grüner_Tee"
+      }
+    ],
+    "craft_beer_image": null
+  }
+]
