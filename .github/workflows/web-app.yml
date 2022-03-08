@@ -5,7 +5,7 @@ env:
   NODE_ENV: "test"
 defaults:
   run:
-    working-directory: frontend
+    working-directory: ./frontend
 
 concurrency:
   group: ci-web-${{ github.ref }}
