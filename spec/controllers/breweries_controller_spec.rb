@@ -9,7 +9,7 @@ RSpec.describe Api::V1::BreweriesController do
       expect(JSON.parse(response.body)).to be_an Array
       expect(JSON.parse(response.body)).to eq(
         [{
-          address: brewery.address.to_s,
+          address: brewery.address,
           description: brewery.description,
           id: brewery.id,
           name: brewery.name,

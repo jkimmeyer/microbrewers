@@ -17,7 +17,7 @@ module Api
 
       def breweries_as_json(breweries)
         breweries.map do |brewery|
-          address = brewery.address.to_s
+          address = brewery.address
           logo = logo_url(brewery)
           attributes = brewery.attributes
           attributes.delete("address_data")
