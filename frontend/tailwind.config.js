@@ -22,7 +22,13 @@ module.exports = {
       borderRadius: {
         '4xl': '48px',
       },
+      height: {
+        320: '320px',
+      },
       width: {
+        320: '320px',
+      },
+      maxWidth: {
         320: '320px',
       },
     },

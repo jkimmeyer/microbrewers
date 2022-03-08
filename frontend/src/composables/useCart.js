@@ -9,8 +9,15 @@ if (savedCart) {
 }
 
 export const useCart = () => {
-  const addToCart = (craftBeer) => {
-    cart.value.push({ craftBeer, quantity: 1 });
+  const addToCart = (craftBeer, quantity = 1) => {
+    const item = cart.value.find((cartItem) => cartItem.craftBeer.id === craftBeer.id);
+
+    if (item != null) {
+      item.quantity += quantity;
+    } else {
+      cart.value.push({ craftBeer, quantity });
+    }
+
     window.localStorage.setItem('CART', JSON.stringify(cart.value));
   };
 

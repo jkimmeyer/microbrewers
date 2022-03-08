@@ -1,5 +1,5 @@
 <template>
-  <div class="space-x-2">
+  <div class="flex justify-between">
     <div
       class="bg-white inline-flex py-2 px-2 rounded-xl text-2xl font-bold
                items-center space-x-2 border-oxfordBlue border-2"
@@ -35,7 +35,7 @@
       </button>
     </div>
     <button
-      class="p-2 bg-saffron rounded-xl"
+      class="p-2 bg-saffron rounded-xl ml-auto"
       @click="$emit('add-to-cart', amount)"
     >
       <Icon
