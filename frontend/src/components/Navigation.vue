@@ -13,7 +13,7 @@
       />
       <NavigationItem
         :navigation-text="$t('navigation.brewers')"
-        navigation-link="/brewers"
+        navigation-link="/breweries"
       />
       <NavigationItem
         :navigation-text="$t('navigation.cart')"

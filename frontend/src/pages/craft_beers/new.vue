@@ -60,8 +60,8 @@ import CraftBeerForm from '@/components/CraftBeer/Form.vue';
 
 const CraftBeerRepository = Repository.get('craftBeer');
 const CraftBeerTypeRepository = Repository.get('craftBeerType');
-const HopsRepository = Repository.get('hops');
-const FlavorsRepository = Repository.get('flavors');
+const HopRepository = Repository.get('hop');
+const FlavorRepository = Repository.get('flavor');
 
 export default {
   name: 'CraftBeerNew',
@@ -102,12 +102,12 @@ export default {
         this.craftBeerTypes = response.data;
       });
 
-    HopsRepository.get()
+    HopRepository.get()
       .then((response) => {
         this.hops = response.data;
       });
 
-    FlavorsRepository.get()
+    FlavorRepository.get()
       .then((response) => {
         this.flavors = response.data;
       });

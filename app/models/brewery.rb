@@ -1,6 +1,7 @@
 class Brewery < ApplicationRecord
   has_one_attached :logo
   has_one :user, as: :account, required: true, dependent: :destroy
+  validates :name, :description, presence: true
 
   def address
     return nil if address_data.blank?
