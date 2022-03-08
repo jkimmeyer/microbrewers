@@ -47,7 +47,7 @@ jobs:
       - run: yarn eslint --max-warnings=0
 
   test:
-    name: Build
+    name: Test
     runs-on: ubuntu-latest
 
     steps:

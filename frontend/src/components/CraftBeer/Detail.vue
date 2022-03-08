@@ -70,7 +70,7 @@
           <span class="mb-1">{{ $t('craftBeer.hops') }}</span>
         </dt>
         <dd class="col-span-6 text-2xl">
-          {{ craftBeer.hops || 'Hallertauer' }}
+          {{ craftBeer?.hops?.join(', ') || 'Hallertauer' }}
         </dd>
       </dl>
 
