@@ -115,9 +115,8 @@ export default {
   methods: {
     createCraftBeer() {
       CraftBeerRepository.create(this.craftBeer)
-        .then((response) => {
-          // eslint-disable-next-line no-console
-          console.log(response);
+        .then(() => {
+          this.$router.push('/users/craft_beers');
         })
         .catch((error) => {
           this.errors = error.response.data;
