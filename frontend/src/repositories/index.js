@@ -1,14 +1,16 @@
+import BreweryRepository from './BreweryRepository';
 import CraftBeerRepository from './CraftBeerRepository';
 import CraftBeerTypeRepository from './CraftBeerTypeRepository';
 import FlavorRepository from './FlavorRepository';
-import HopsRepository from './HopsRepository';
+import HopRepository from './HopRepository';
 import UserRepository from './UserRepository';
 
 const repositories = {
+  brewery: BreweryRepository,
   craftBeer: CraftBeerRepository,
   craftBeerType: CraftBeerTypeRepository,
-  flavors: FlavorRepository,
-  hops: HopsRepository,
+  flavor: FlavorRepository,
+  hop: HopRepository,
   user: UserRepository,
 };
 

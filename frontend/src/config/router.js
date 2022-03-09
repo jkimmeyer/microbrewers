@@ -10,12 +10,14 @@ import UsersLogin from '@/pages/users/login.vue';
 import UsersRegistration from '@/pages/users/registration.vue';
 import UsersDashboard from '@/pages/users/dashboard.vue';
 import UsersCraftBeers from '@/pages/users/craft_beers.vue';
+import Breweries from '@/pages/breweries.vue';
 import Cart from '@/pages/cart.vue';
 
 import { useAuth } from '@/composables/useAuth';
 
 const publicRoutes = [
   { path: '/', component: Index },
+  { path: '/breweries', component: Breweries },
   { path: '/craft_beers', component: CraftBeersIndex },
   { path: '/users/login', component: UsersLogin, meta: { redirectIfLoggedIn: true } },
   { path: '/users/registration', component: UsersRegistration, meta: { redirectIfLoggedIn: true } },

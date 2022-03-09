@@ -39,7 +39,7 @@ describe('Create a CraftBeer', () => {
 
   it('displays the page', () => {
     cy.visit('/craft_beers/new');
-    cy.contains('Erstelle ein neues Craft Bier!');
+    cy.contains('Erstelle ein neues Craft-Bier!');
     cy.contains('Craft-Bier speichern');
     cy.contains('Vorschau - Detailansicht');
   });

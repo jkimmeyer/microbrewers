@@ -89,12 +89,11 @@ describe('The Login Page', () => {
 
     it('user can logout', () => {
       cy.get('#navigation').within(() => {
-        cy.contains('Cart');
+        cy.get('[aria-label="Einkaufswagen"]');
         cy.contains('Logout');
 
         cy.get('button').click().then(() => {
           cy.contains('Login');
-          cy.contains('Registrierung');
           expect(localStorage.getItem('ACCESS_TOKEN')).to.eq(null);
           expect(localStorage.getItem('CLIENT')).to.eq(null);
           expect(localStorage.getItem('UID')).to.eq(null);

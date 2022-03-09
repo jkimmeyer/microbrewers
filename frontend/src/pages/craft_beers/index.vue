@@ -18,10 +18,6 @@
         </div>
       </div>
     </div>
-
-    <router-link to="/craft_beers/new">
-      {{ $t("brewer.create") }}
-    </router-link>
   </div>
 </template>
 
