@@ -89,7 +89,7 @@ describe('The Login Page', () => {
 
     it('user can logout', () => {
       cy.get('#navigation').within(() => {
-        cy.contains('Cart');
+        cy.contains('[aria-label="Einkaufswagen"]');
         cy.contains('Logout');
 
         cy.get('button').click().then(() => {

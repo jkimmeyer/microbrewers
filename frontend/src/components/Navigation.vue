@@ -30,6 +30,7 @@
       <NavigationItem
         :navigation-text="$t('navigation.cart')"
         navigation-link="/cart"
+        aria-label="Einkaufswagen"
       >
         <div class="flex items-center flex-col">
           <span
