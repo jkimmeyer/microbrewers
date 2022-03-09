@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const cart = ref([]);
 
@@ -22,6 +22,8 @@ export const useCart = () => {
 
     window.localStorage.setItem('CART', JSON.stringify(cart.value));
   };
+
+  const cartItemsAmount = computed(() => cart.value.length);
 
   const removeFromCart = (cartItemId) => {
     cart.value.splice(cartItemId, 1);
@@ -54,5 +56,6 @@ export const useCart = () => {
     increaseQuantity,
     decreaseQuantity,
     setQuantity,
+    cartItemsAmount,
   };
 };

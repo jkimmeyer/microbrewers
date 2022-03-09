@@ -15,10 +15,6 @@
         :navigation-text="$t('navigation.brewers')"
         navigation-link="/breweries"
       />
-      <NavigationItem
-        :navigation-text="$t('navigation.cart')"
-        navigation-link="/cart"
-      />
       <template v-if="loggedIn">
         <NavigationItem
           :navigation-text="$t('navigation.logout')"
@@ -30,25 +26,40 @@
           :navigation-text="$t('navigation.login')"
           navigation-link="/users/login"
         />
-        <NavigationItem
-          :navigation-text="$t('navigation.registration')"
-          navigation-link="/users/registration"
-        />
       </template>
+      <NavigationItem
+        :navigation-text="$t('navigation.cart')"
+        navigation-link="/cart"
+      >
+        <div class="flex items-center flex-col">
+          <span
+            class="w-4 h-4 text-sm rounded-full border-2 flex items-center justify-center"
+          >{{ cartItemsAmount }}</span>
+          <Icon
+            icon="beer"
+            width="32"
+            height="32"
+          />
+        </div>
+      </NavigationItem>
     </ul>
   </nav>
 </template>
 
 <script>
+import Icon from '@/components/Icon.vue';
 import NavigationItem from '@/components/NavigationItem.vue';
 import { useAuth } from '@/composables/useAuth';
 import { useRouter } from 'vue-router';
+import { useCart } from '@/composables/useCart';
 
 export default {
   components: {
+    Icon,
     NavigationItem,
   },
   setup() {
+    const { cartItemsAmount } = useCart();
     const { logout, user, loggedIn } = useAuth();
     const router = useRouter();
 
@@ -57,6 +68,7 @@ export default {
       router.push('/users/login');
     };
     return {
+      cartItemsAmount,
       userLogout,
       user,
       loggedIn,

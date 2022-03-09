@@ -1,6 +1,11 @@
 <template>
   <div>
-    Dashboard
+    <router-link
+      class="text-limeGreen"
+      to="/craft_beers/new"
+    >
+      {{ $t("brewer.create") }}
+    </router-link>
   </div>
 </template>
 
