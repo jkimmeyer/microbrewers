@@ -94,7 +94,6 @@ describe('The Login Page', () => {
 
         cy.get('button').click().then(() => {
           cy.contains('Login');
-          cy.contains('Registrierung');
           expect(localStorage.getItem('ACCESS_TOKEN')).to.eq(null);
           expect(localStorage.getItem('CLIENT')).to.eq(null);
           expect(localStorage.getItem('UID')).to.eq(null);
