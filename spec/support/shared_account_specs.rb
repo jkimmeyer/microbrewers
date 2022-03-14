@@ -4,8 +4,8 @@ RSpec.shared_examples "shared_account_specs" do
   context "without user" do
     let(:user) { nil }
 
-    it "raises an validation error" do
-      expect { subject }.to raise_error ActiveRecord::RecordInvalid, "Validation failed: User must exist"
+    it "raises no validation error" do
+      expect { subject }.not_to raise_error
     end
   end
 

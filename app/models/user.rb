@@ -8,4 +8,10 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
   belongs_to :account, polymorphic: true, optional: true
   validates :email, presence: true
+
+  accepts_nested_attributes_for :account
+
+  def build_account(params)
+    self.account = account_type.constantize.new(params)
+  end
 end
