@@ -18,6 +18,7 @@
   "previous": "Zurück zur vorherigen Seite",
   "root": "Zur Startseite",
   "continue": "Weiter",
-  "cart": "Cart",
+  "cart": "Einkaufswagen",
+  "profile": "Profil",
   "logout": "Logout"
 }
