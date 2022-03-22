@@ -4,7 +4,11 @@ module Api
       skip_before_action :authenticate_user!, only: [:index]
 
       def index
-        @craft_beers = CraftBeer.all.with_attached_craft_beer_image
+        if params[:user_id]
+          @craft_beers = CraftBeer.where(brewery_id: params[:user_id]).with_attached_craft_beer_image
+        else
+          @craft_beers = CraftBeer.all.with_attached_craft_beer_image
+        end
 
         render json: craft_beers_as_json(@craft_beers)
       end

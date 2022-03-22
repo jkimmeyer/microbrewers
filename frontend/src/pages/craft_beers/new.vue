@@ -57,6 +57,7 @@ import CraftBeerView from '@/components/CraftBeer/View.vue';
 import CraftBeerDetail from '@/components/CraftBeer/Detail.vue';
 import Repository from '@/repositories/index';
 import CraftBeerForm from '@/components/CraftBeer/Form.vue';
+import { useAuth } from '@/composables/useAuth';
 
 const CraftBeerRepository = Repository.get('craftBeer');
 const CraftBeerTypeRepository = Repository.get('craftBeerType');
@@ -69,6 +70,11 @@ export default {
     CraftBeerView,
     CraftBeerDetail,
     CraftBeerForm,
+  },
+  setup() {
+    const { user } = useAuth();
+
+    return { user };
   },
   data() {
     return {
@@ -83,6 +89,7 @@ export default {
         flavors: null,
         color: null,
         craft_beer_type_id: null,
+        brewery_id: this.user?.account_id,
       },
       craftBeerTypes: [],
       hops: [],
@@ -128,7 +135,7 @@ export default {
       [this.craftBeer.craft_beer_image] = event.target.files;
     },
     updateCraftBeer(craftBeer) {
-      this.craftBeer = craftBeer;
+      this.craftBeer = { ...this.craftBeer, ...craftBeer };
     },
   },
 };
