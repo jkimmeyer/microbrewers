@@ -4,9 +4,15 @@
     class="flex items-center justify-between mx-16"
   >
     <h1 class="font-serif text-3xl">
-      {{ $t('microbrewers') }}
+      <RouterLink
+        to="/"
+        class="flex items-center space-x-4"
+      >
+        <Logo />
+        <span>{{ $t('microbrewers') }}</span>
+      </RouterLink>
     </h1>
-    <ul class="flex items-center space-x-8">
+    <ul class="flex items-center space-x-8 py-2">
       <NavigationItem
         :navigation-text="$t('navigation.craftBeers')"
         navigation-link="/craft_beers"
@@ -27,10 +33,11 @@
           navigation-link="/users/login"
         />
       </template>
+
       <NavigationItem
-        :navigation-text="$t('navigation.cart')"
+        class="pl-32"
         navigation-link="/cart"
-        aria-label="Einkaufswagen"
+        :aria-label="$t('navigation.cart')"
       >
         <div class="flex items-center flex-col">
           <span
@@ -43,12 +50,24 @@
           />
         </div>
       </NavigationItem>
+      <NavigationItem
+        v-if="loggedIn"
+        navigation-link="/dashboard"
+        :aria-label="$t('navigation.profile')"
+      >
+        <Icon
+          icon="person"
+          width="32"
+          height="32"
+        />
+      </NavigationItem>
     </ul>
   </nav>
 </template>
 
 <script>
 import Icon from '@/components/Icon.vue';
+import Logo from '@/components/Logo.vue';
 import NavigationItem from '@/components/NavigationItem.vue';
 import { useAuth } from '@/composables/useAuth';
 import { useRouter } from 'vue-router';
@@ -57,6 +76,7 @@ import { useCart } from '@/composables/useCart';
 export default {
   components: {
     Icon,
+    Logo,
     NavigationItem,
   },
   setup() {
