@@ -37,6 +37,7 @@
       <NavigationItem
         class="pl-32"
         navigation-link="/cart"
+        v-if="user?.account_type !== 'Brewery'"
         :aria-label="$t('navigation.cart')"
       >
         <div class="flex items-center flex-col">
@@ -50,6 +51,22 @@
           />
         </div>
       </NavigationItem>
+
+      <NavigationItem
+        class="pl-32"
+        navigation-link="/users/craft_beers"
+        v-else
+        :aria-label="$t('navigation.craftBeers')"
+      >
+        <div class="flex items-center flex-col">
+          <Icon
+            icon="beer"
+            width="32"
+            height="32"
+          />
+        </div>
+      </NavigationItem>
+
       <NavigationItem
         v-if="loggedIn"
         navigation-link="/dashboard"
