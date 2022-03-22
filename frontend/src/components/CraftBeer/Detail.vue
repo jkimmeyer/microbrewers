@@ -91,6 +91,7 @@
 </template>
 
 <script>
+import { useAuth } from '@/composables/useAuth';
 import { useCart } from '@/composables/useCart';
 
 import AddToCart from '@/components/AddToCart.vue';
@@ -120,8 +121,9 @@ export default {
     },
   },
   setup() {
+    const { user } = useAuth();
     const { addToCart } = useCart();
-    return { addToCart };
+    return { addToCart, user };
   },
   data() {
     return {

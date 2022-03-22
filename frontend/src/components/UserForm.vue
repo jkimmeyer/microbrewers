@@ -1,5 +1,8 @@
 <template>
   <form @submit.prevent="$emit('handleSubmit', user)">
+    <h2 class="text-2xl font-serif">
+      {{ $t('user.loginForm') }}
+    </h2>
     <InputField
       v-slot="slotProps"
       :label="$t('user.email')"
