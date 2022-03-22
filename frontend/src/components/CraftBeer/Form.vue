@@ -144,7 +144,7 @@
       <VButton
         button-type="submit"
       >
-        <span>{{ $t('brewer.saveCraftBeer') }}</span>
+        <span>{{ $t('brewery.saveCraftBeer') }}</span>
         <Icon
           icon="arrow-circle-right"
           width="24"

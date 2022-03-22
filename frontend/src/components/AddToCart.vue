@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-between">
     <div
-      class="bg-white inline-flex py-2 px-2 rounded-xl text-2xl font-bold
+      class="bg-white inline-flex px-2 rounded-xl text-2xl font-bold
                items-center space-x-2 border-oxfordBlue border-2"
     >
       <button
@@ -38,7 +38,9 @@
     </div>
     <button
       :aria-label="$t('cart.add')"
-      class="p-2 bg-saffron rounded-xl ml-auto"
+      :disabled="amount <= 0"
+      class="p-2 bg-saffron rounded-xl ml-auto
+    hover:bg-oxfordBlue hover:text-saffron disabled:opacity-25"
       @click="$emit('add-to-cart', amount)"
     >
       <Icon
