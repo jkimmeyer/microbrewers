@@ -8,7 +8,7 @@
       </div>
 
       <h3 class="mb-2">
-        <span class="block leading-none">{{ brewery.address.city }}</span>
+        <span class="block leading-none">{{ brewery.address?.city }}</span>
         <span class="text-2xl font-bold block">{{ brewery.name }}</span>
       </h3>
 
