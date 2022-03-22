@@ -8,5 +8,15 @@
     "invitation": "Jetzt anmelden!",
     "missing": "Noch nicht registriert?"
   },
-  "termsAndConditions": "Ich habe die Geschäftsbedinungen gelesen und akzeptiere diese."
+  "termsAndConditions": "Ich habe die Geschäftsbedinungen gelesen und akzeptiere diese.",
+  "customer": "Kunde",
+  "brewery": "Brauerei",
+  "privateBrewery": "Private Brauerei",
+  "firstName": "Vorname",
+  "lastName": "Nachname",
+  "name": "Name",
+  "street": "Straße",
+  "houseNumber": "Hausnummer",
+  "city": "Stadt",
+  "postalCode": "PLZ"
 }

@@ -2,7 +2,7 @@
   <div>
     <div class="mb-20">
       <h2 class="text-3xl font-serif mb-8">
-        {{ $t('brewer.create') }}
+        {{ $t('brewery.create') }}
       </h2>
 
       <CraftBeerForm
@@ -47,7 +47,7 @@
     </div>
 
     <router-link to="/craft_beers">
-      {{ $t('brewer.craftBeerOverview') }}
+      {{ $t('brewery.craftBeerOverview') }}
     </router-link>
   </div>
 </template>
@@ -93,7 +93,7 @@ export default {
   },
   computed: {
     previewHeading() {
-      return this.craftBeerDetailView ? this.$t('brewer.craftBeerPreviewDetail') : this.$t('brewer.craftBeerPreviewOverview');
+      return this.craftBeerDetailView ? this.$t('brewery.craftBeerPreviewDetail') : this.$t('brewery.craftBeerPreviewOverview');
     },
   },
   mounted() {
