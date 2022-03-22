@@ -30,6 +30,7 @@ module Api
           :alcohol_volume,
           :price,
           :color,
+          :brewery_id,
           :craft_beer_type_id,
           flavors: [],
           hops: [],

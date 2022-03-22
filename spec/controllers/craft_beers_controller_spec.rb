@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Api::V1::CraftBeersController do
   describe "POST /api/v1/craft_beers/create" do
-    let!(:user) { create :user }
+    let!(:brewery) { create :brewery }
     let!(:craft_beer_type) { create :craft_beer_type }
 
     context "with valid attributes" do
@@ -10,7 +10,7 @@ RSpec.describe Api::V1::CraftBeersController do
 
       let(:craft_beer_type) { create :craft_beer_type }
       let(:craft_beer) do
-        { craft_beer: { name: "Holunder-Bier", price: 2.99, description: "Description", craft_beer_type: craft_beer_type.id, craft_beer_type_id: craft_beer_type.id, craft_beer_image: craft_beer_image } }
+        { craft_beer: { name: "Holunder-Bier", price: 2.99, description: "Description", craft_beer_type: craft_beer_type.id, brewery_id: brewery.id, craft_beer_type_id: craft_beer_type.id, craft_beer_image: craft_beer_image } }
       end
 
       let(:craft_beer_image) { fixture_file_upload("brut-ale.png") }
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::CraftBeersController do
 
       context "when logged in" do
         before(:each) do
-          request.headers.merge! user.create_new_auth_token
+          request.headers.merge! brewery.user.create_new_auth_token
         end
 
         it "returns a JSON response" do
@@ -52,7 +52,7 @@ RSpec.describe Api::V1::CraftBeersController do
 
         context "with flavors and hops" do
           let(:craft_beer) do
-            { craft_beer: { name: "Holunder-Bier", price: 2.99, description: "Description", craft_beer_type: craft_beer_type.id, craft_beer_type_id: craft_beer_type.id, craft_beer_image: craft_beer_image, flavors: Flavor.all.sample(2), hops: Hop.all.sample(2) } }
+            { craft_beer: { name: "Holunder-Bier", price: 2.99, description: "Description", craft_beer_type: craft_beer_type.id, craft_beer_type_id: craft_beer_type.id, brewery_id: brewery.id, craft_beer_image: craft_beer_image, flavors: Flavor.all.sample(2), hops: Hop.all.sample(2) } }
           end
 
           it "creates a craft beer" do
@@ -82,12 +82,12 @@ RSpec.describe Api::V1::CraftBeersController do
       end
 
       before(:each) do
-        request.headers.merge! user.create_new_auth_token
+        request.headers.merge! brewery.user.create_new_auth_token
       end
 
       it "returns errors" do
         subject
-        expect(response.body).to eq({ errors: { craft_beer_type: ["must exist"], price: ["can't be blank"], description: ["can't be blank"] } }.to_json)
+        expect(response.body).to eq({ errors: { craft_beer_type: ["must exist"], brewery: ["must exist"], price: ["can't be blank"], description: ["can't be blank"] } }.to_json)
       end
 
       it "creates no beer" do
