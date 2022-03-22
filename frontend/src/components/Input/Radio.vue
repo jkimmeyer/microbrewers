@@ -40,10 +40,9 @@ export default {
   @apply text-white bg-oxfordBlue;
 }
 
-.input-radio:focus + .input-label,
 .input-radio:hover + .input-label,
 .input-radio:active + .input-label {
-  @apply bg-saffron;
+  @apply text-white bg-oxfordBlue;
 }
 
 .benefits--item::before {

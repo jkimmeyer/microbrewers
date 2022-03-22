@@ -5,7 +5,7 @@
       class="text-limeGreen"
       to="/craft_beers/new"
     >
-      {{ $t("brewer.create") }}
+      {{ $t("brewery.create") }}
     </router-link>
   </div>
 </template>

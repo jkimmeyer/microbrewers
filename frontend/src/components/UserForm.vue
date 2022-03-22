@@ -10,7 +10,7 @@
     >
       <input
         id="input-user-email"
-        v-model="user.email"
+        v-model.lazy="user.email"
         size="32"
         :class="slotProps.class"
         type="email"
@@ -24,7 +24,7 @@
     >
       <input
         id="input-user-password"
-        v-model="user.password"
+        v-model.lazy="user.password"
         size="32"
         :class="slotProps.class"
         type="password"
@@ -38,7 +38,7 @@
     >
       <input
         id="input-user-password-confirmation"
-        v-model="user.passwordConfirmation"
+        v-model.lazy="user.passwordConfirmation"
         size="32"
         :class="slotProps.class"
         type="password"
@@ -52,19 +52,11 @@
     >
       <input
         id="input-terms-and-conditions"
+        v-model="user.termsAndConditions"
         :class="slotProps.class"
         type="checkbox"
       >
     </InputCheckbox>
-
-    <div>
-      <button
-        class="py-2 px-4 bg-saffron rounded-lg font-bold"
-        type="submit"
-      >
-        {{ $t('navigation.continue') }}
-      </button>
-    </div>
   </form>
 </template>
 
@@ -76,20 +68,28 @@ export default {
   name: 'UserForm',
   components: { InputCheckbox, InputField },
   props: {
-    currentUser: {
+    currentData: {
       type: Object,
-      default: () => {},
+      required: true,
     },
   },
   data() {
     return {
       user: {
-        email: this.currentUser?.email,
-        password: '',
-        passwordConfirmation: '',
-        termsAndConditions: false,
+        email: this.currentData?.email,
+        password: this.currentData?.password,
+        passwordConfirmation: this.currentData?.passwordConfirmation,
+        termsAndConditions: this.currentData?.termsAndConditions,
       },
     };
+  },
+  watch: {
+    user: {
+      handler() {
+        this.$emit('handleSubmit', this.user);
+      },
+      deep: true,
+    },
   },
 };
 </script>

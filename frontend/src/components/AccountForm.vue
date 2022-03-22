@@ -7,10 +7,13 @@
     >
       <input
         id="brewery-radio"
-        v-model="accountType"
         :class="slotProps.class"
         type="radio"
         name="account-type"
+        value="Brewery"
+        required
+        :checked="accountType === 'Brewery'"
+        @change="accountType = $event.target.value; $emit('handleSubmit', accountType);"
       >
     </InputRadio>
 
@@ -21,10 +24,13 @@
     >
       <input
         id="customer-radio"
-        v-model="accountType"
         :class="slotProps.class"
         type="radio"
         name="account-type"
+        value="Customer"
+        required
+        :checked="accountType === 'Customer'"
+        @change="accountType = $event.target.value; $emit('handleSubmit', accountType);"
       >
     </InputRadio>
 
@@ -35,10 +41,13 @@
     >
       <input
         id="private-brewery-radio"
-        v-model="accountType"
         :class="slotProps.class"
         type="radio"
         name="account-type"
+        value="PrivateBrewery"
+        required
+        :checked="accountType === 'PrivateBrewery'"
+        @change="accountType = $event.target.value; $emit('handleSubmit', accountType);"
       >
     </InputRadio>
   </form>
@@ -51,9 +60,15 @@ export default {
   components: {
     InputRadio,
   },
+  props: {
+    currentData: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
-      accountType: null,
+      accountType: this.currentData?.accountType,
     };
   },
 };
