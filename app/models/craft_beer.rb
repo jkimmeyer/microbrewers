@@ -1,6 +1,7 @@
 class CraftBeer < ApplicationRecord
   has_one_attached :craft_beer_image
   belongs_to :craft_beer_type
+  belongs_to :brewery
 
   validates :name, :price, :description, presence: true
   validates :name, uniqueness: true

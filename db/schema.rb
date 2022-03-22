@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_22_171949) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_22_213432) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_22_171949) do
     t.string "name"
     t.string "ust_id"
     t.json "address_data"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
   end
 
   create_table "craft_beer_types", force: :cascade do |t|
@@ -76,6 +79,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_22_171949) do
     t.decimal "original_wort"
     t.json "hops_data"
     t.json "flavors_data"
+    t.bigint "brewery_id"
+    t.index ["brewery_id"], name: "index_craft_beers_on_brewery_id"
     t.index ["craft_beer_type_id"], name: "index_craft_beers_on_craft_beer_type_id"
     t.index ["name"], name: "index_craft_beers_on_name", unique: true
   end
@@ -122,5 +127,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_22_171949) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "craft_beers", "breweries"
   add_foreign_key "craft_beers", "craft_beer_types"
 end
