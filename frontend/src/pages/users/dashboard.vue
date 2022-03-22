@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link
-      v-if="user.account_type === 'Brewery'"
+      v-if="user?.account_type === 'Brewery'"
       class="text-limeGreen"
       to="/craft_beers/new"
     >
