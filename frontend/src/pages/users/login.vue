@@ -35,7 +35,7 @@ export default {
           router.push('/dashboard');
         })
         .catch((response) => {
-          errors.value = response.errors;
+          errors.value = response.response.data;
         });
     };
 

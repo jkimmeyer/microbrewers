@@ -78,8 +78,8 @@ export default {
   components: { InputField },
   props: {
     errors: {
-      type: Object,
-      default: () => {},
+      type: Array,
+      default: () => [],
     },
   },
 
