@@ -16,10 +16,6 @@ class Brewery < ApplicationRecord
   end
 
   def address=(address)
-    address_data["street"] = address.street
-    address_data["house_number"] = address.house_number
-    address_data["postal_code"] = address.postal_code
-    address_data["city"] = address.city
-    address_data["country"] = address.country
+    self.address_data = address
   end
 end
