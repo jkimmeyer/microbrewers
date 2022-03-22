@@ -5,8 +5,8 @@
     version="1.1"
     x="0"
     y="0"
+    class="w-8"
     viewBox="0 0 69 84"
-    style="enable-background: new 0 0 69 84;"
   >
     <path
       class="st0"

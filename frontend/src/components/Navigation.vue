@@ -6,29 +6,13 @@
     <h1 class="font-serif text-3xl">
       <RouterLink
         to="/"
-        class="flex items-center space-x-2"
+        class="flex items-center space-x-4"
       >
         <Logo />
-        {{ $t('microbrewers') }}
+        <span>{{ $t('microbrewers') }}</span>
       </RouterLink>
     </h1>
     <ul class="flex items-center space-x-8 py-2">
-      <NavigationItem
-        :navigation-text="$t('navigation.cart')"
-        navigation-link="/cart"
-        aria-label="Einkaufswagen"
-      >
-        <div class="flex items-center flex-col">
-          <span
-            class="w-4 h-4 text-sm rounded-full border-2 flex items-center justify-center"
-          >{{ cartItemsAmount }}</span>
-          <Icon
-            icon="beer"
-            width="32"
-            height="32"
-          />
-        </div>
-      </NavigationItem>
       <NavigationItem
         :navigation-text="$t('navigation.craftBeers')"
         navigation-link="/craft_beers"
@@ -49,6 +33,34 @@
           navigation-link="/users/login"
         />
       </template>
+
+      <NavigationItem
+        class="pl-32"
+        navigation-link="/cart"
+        :aria-label="$t('navigation.cart')"
+      >
+        <div class="flex items-center flex-col">
+          <span
+            class="w-4 h-4 text-sm rounded-full border-2 flex items-center justify-center"
+          >{{ cartItemsAmount }}</span>
+          <Icon
+            icon="beer"
+            width="32"
+            height="32"
+          />
+        </div>
+      </NavigationItem>
+      <NavigationItem
+        v-if="loggedIn"
+        navigation-link="/dashboard"
+        :aria-label="$t('navigation.profile')"
+      >
+        <Icon
+          icon="person"
+          width="32"
+          height="32"
+        />
+      </NavigationItem>
     </ul>
   </nav>
 </template>
