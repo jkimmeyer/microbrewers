@@ -18,7 +18,7 @@ export default {
     return Client.get(`${resource}/${id}`);
   },
   getCraftBeerByUser(id) {
-    return Client.get(`${resource}?user_id=${id}`)
+    return Client.get(`${resource}?user_id=${id}`);
   },
   create(payload) {
     const formData = new FormData();
