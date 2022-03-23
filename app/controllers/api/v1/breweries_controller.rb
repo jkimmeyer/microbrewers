@@ -12,7 +12,7 @@ module Api
 
       def logo_url(brewery)
         if Rails.env.production?
-          "http://microbrewers.beer" + rails_blob_path(brewery&.logo) if brewery.logo.attached?
+          "http://microbrewers.beer#{rails_blob_path(brewery&.logo)}" if brewery.logo.attached?
         elsif brewery.logo.attached?
           url_for(brewery&.logo)
         end
