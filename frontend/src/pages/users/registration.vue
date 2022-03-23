@@ -43,6 +43,13 @@
       />
     </Transition>
 
+    <div
+      v-if="errors.size > 0"
+      class="col-start-5 col-end-9"
+    >
+      {{ errors }}
+    </div>
+
     <div class="col-start-5 col-end-9 flex items-center space-x-4">
       <VButton
         v-if="step > 0"
@@ -71,6 +78,7 @@ import Repository from '@/repositories/index';
 import CustomerForm from '@/components/CustomerForm.vue';
 import BreweryForm from '@/components/BreweryForm.vue';
 import PrivateBreweryForm from '@/components/PrivateBreweryForm.vue';
+import { useRouter } from 'vue-router';
 
 const UserRepository = Repository.get('user');
 
@@ -88,6 +96,7 @@ export default {
     const errors = ref({});
     const step = ref(0);
     const user = ref({});
+    const router = useRouter();
 
     const setUser = (userData) => {
       user.value = userData;
@@ -104,8 +113,11 @@ export default {
 
     const registerUser = () => {
       UserRepository.register(user.value)
+        .then(() => {
+          router.push('/brewers-registration');
+        })
         .catch((error) => {
-          errors.value = error.response.data.errors;
+          errors.value = error.response.data.errors.full_messages;
         });
     };
 
