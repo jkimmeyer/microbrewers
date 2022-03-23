@@ -12,6 +12,7 @@ AllCops:
     - .pryrc # Do what you want here
     - doc/**/*
     - node_modules/**/*
+    - spec/lib/application_patterns/**/*
   NewCops: enable
 
 ###
