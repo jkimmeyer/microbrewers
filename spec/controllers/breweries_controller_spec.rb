@@ -20,6 +20,9 @@ RSpec.describe Api::V1::BreweriesController do
           created_at: JSON.parse(response.body)[0]["created_at"],
           updated_at: JSON.parse(response.body)[0]["updated_at"],
           logo: JSON.parse(response.body)[0]["logo"],
+          phone: nil,
+          first_name: nil,
+          last_name: nil,
         }].as_json,
       )
     end
