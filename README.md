@@ -11,7 +11,7 @@ Aktuell wird die Anwendung auf die Oracle Cloud-Infrastruktur deployed: Bei Beda
 
 To set up your local development environment, the following dependencies must be installed:
 
-1. Install `asdf` or another version manager of your choice if you haven't already. Follow [asdf-Docs](https://asdf-vm.com/guide/getting-started.html#_1-install-dependencies)for installation.
+1. Install `asdf` or another version manager of your choice if you haven't already. Follow [asdf-Docs](https://asdf-vm.com/guide/getting-started.html#_1-install-dependencies) for installation.
 2. Clone the project with `git clone git@github.com:jkimmeyer/microbrewers.git` and move into the project directory with `cd microbrewers`.
 3. Add asdf plugins for ruby and nodejs with `asdf plugin add ruby && asdf plugin add yarn`.
 4. Install the correct ruby version and nodejs version with `asdf install`. This uses the versions from the [.tool-versions](.tool-versions) file.
