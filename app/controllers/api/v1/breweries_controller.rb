@@ -5,14 +5,17 @@ module Api
 
       def index
         @breweries = Brewery.all.with_attached_logo
-
         render json: breweries_as_json(@breweries)
       end
 
       private
 
       def logo_url(brewery)
-        url_for(brewery&.logo) if brewery.logo.attached?
+        if Rails.env.production?
+          "http://microbrewers.beer" + rails_blob_path(brewery&.logo) if brewery.logo.attached?
+        elsif brewery.logo.attached?
+          url_for(brewery&.logo)
+        end
       end
 
       def breweries_as_json(breweries)

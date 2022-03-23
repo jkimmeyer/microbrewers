@@ -50,7 +50,11 @@ module Api
       end
 
       def craft_beer_image_url(craft_beer)
-        url_for(craft_beer&.craft_beer_image) if craft_beer.craft_beer_image.attached?
+        if Rails.env.production?
+          "http://microbrewers.beer" + rails_blob_path(craft_beer&.craft_beer_image) if craft_beer.craft_beer_image.attached?
+        elsif craft_beer.craft_beer_image.attached?
+          url_for(craft_beer&.craft_beer_image)
+        end
       end
     end
   end
