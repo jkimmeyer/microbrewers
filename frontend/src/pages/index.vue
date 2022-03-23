@@ -27,11 +27,17 @@
     </div>
 
     <div class="max-w-screen-xl mx-auto mt-20 bg-oxfordBlue">
-      <img
+      <iframe
+        width="100%"
+        height="800px"
+        src="https://www.youtube.com/embed/5i1txE9NT3c"
+        title="YouTube video player"
+        frameborder="0"
+        allow="
+        accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         class="rounded-lg"
-        src="@/assets/video.png"
-        alt="Video zum Konzept"
-      >
+        allowfullscreen
+      />
     </div>
 
     <h2 class="mt-20 m-auto max-w-screen-xl text-2xl font-serif">
