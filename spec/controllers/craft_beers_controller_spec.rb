@@ -47,7 +47,7 @@ RSpec.describe Api::V1::CraftBeersController do
         end
 
         it "creates a blob " do
-          expect { subject }.to change { ActiveStorage::Blob.count }.from(0).to(1)
+          expect { subject }.to change { ActiveStorage::Blob.count }.from(1).to(2)
         end
 
         context "with flavors and hops" do
@@ -100,7 +100,7 @@ RSpec.describe Api::V1::CraftBeersController do
       end
 
       it "does not create a blob" do
-        expect { subject }.not_to change { ActiveStorage::Blob.count }.from(0)
+        expect { subject }.not_to change { ActiveStorage::Blob.count }.from(1)
       end
     end
   end
