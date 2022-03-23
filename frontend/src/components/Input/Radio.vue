@@ -6,13 +6,13 @@
       class="input-label border-oxfordBlue border bg-white block mr-2 px-4 py-2 text-lg rounded-lg"
       :for="inputId"
     >
-      <div class="w-48">
+      <div>
         <span class="font-medium">{{ label }}</span>
         <ul class="benefits">
-          <li class="benefits--item">Can do it 1</li>
-          <li class="benefits--item">Can do it 2</li>
-          <li class="benefits--item">Can do it 3</li>
-          <li class="benefits--item">Can do it 4</li>
+          <li class="benefits--item">Verkaufe deine Biere regional!</li>
+          <li class="benefits--item">Verwalte alles online.</li>
+          <li class="benefits--item">Biete individuelle Support-Pakete an.</li>
+          <li class="benefits--item">Wachse mit deiner Brauerei!</li>
         </ul>
       </div>
     </label>
@@ -49,5 +49,6 @@ export default {
   @apply text-limeGreen font-extrabold;
   content: '\\';
   display: inline;
+  margin-right: 5px;
 }
 </style>

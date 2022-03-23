@@ -1,6 +1,7 @@
 class Brewery < ApplicationRecord
   has_one_attached :logo
   has_one :user, as: :account, dependent: :destroy
+  has_many :craft_beers, dependent: :destroy
   validates :name, :description, presence: true
 
   def address

@@ -1,3 +1,6 @@
 {
-  "productionDateText": "Produktion startet am"
+  "productionDateText": "Produktion startet am",
+  "start": "Crowd Brew starten",
+  "extend": "Verlängern",
+  "abort": "Abbrechen"
 }

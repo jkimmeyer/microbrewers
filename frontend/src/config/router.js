@@ -6,6 +6,9 @@ import CraftBeersIndex from '@/pages/craft_beers/index.vue';
 import NotFound from '@/pages/404.vue';
 import Unauthorized from '@/pages/401.vue';
 import ServerError from '@/pages/500.vue';
+import CrowdBrewsIndex from '@/pages/crowd_brews/index.vue';
+import CrowdBrewsNew from '@/pages/crowd_brews/new.vue';
+import BrewersRegistration from '@/pages/BrewersRegistration.vue';
 import UsersLogin from '@/pages/users/login.vue';
 import UsersRegistration from '@/pages/users/registration.vue';
 import UsersDashboard from '@/pages/users/dashboard.vue';
@@ -18,6 +21,7 @@ import { useAuth } from '@/composables/useAuth';
 const publicRoutes = [
   { path: '/', component: Index },
   { path: '/breweries', component: Breweries },
+  { path: '/brewers-registration', component: BrewersRegistration },
   { path: '/craft_beers', component: CraftBeersIndex },
   { path: '/users/login', component: UsersLogin, meta: { redirectIfLoggedIn: true } },
   { path: '/users/registration', component: UsersRegistration, meta: { redirectIfLoggedIn: true } },
@@ -32,6 +36,8 @@ const userRoutes = [
 ];
 
 const brewerRoutes = [
+  { path: '/crowd_brews', component: CrowdBrewsIndex },
+  { path: '/crowd_brews/new', component: CrowdBrewsNew },
   { path: '/craft_beers/new', component: CraftBeersNew },
   { path: '/users/craft_beers', component: UsersCraftBeers },
 ];

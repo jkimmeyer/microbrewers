@@ -18,5 +18,8 @@
   "street": "Straße",
   "houseNumber": "Hausnummer",
   "city": "Stadt",
-  "postalCode": "PLZ"
+  "postalCode": "PLZ",
+  "registrationSuccess": "Account erfolgreich erstellt!",
+  "toLogin": "Zum Login",
+  "registrationFollowUp": "Bestätige jetzt deine E-Mail, crowdbrewe dein nächstes Craft-Bier und begeistere unsere Kundschaft mit deinem einzigartigen Craft-Bier."
 }

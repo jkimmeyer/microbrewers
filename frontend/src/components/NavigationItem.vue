@@ -32,7 +32,7 @@ export default {
     },
     navigationText: {
       type: String,
-      required: true,
+      default: null,
     },
   },
 };

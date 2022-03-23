@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :craft_beer do
     association :craft_beer_type
+    association :brewery
     name { Faker::Beer.unique.brand }
     price { 2.99 }
     description { "Ein schönes Hochweizen aus der Winter-Saison" }
