@@ -26,7 +26,13 @@
       >
     </div>
 
-    <div class="max-w-screen-xl mx-auto mt-20 bg-oxfordBlue rounded-lg h-96" />
+    <div class="max-w-screen-xl mx-auto mt-20 bg-oxfordBlue">
+      <img
+        class="rounded-lg"
+        src="@/assets/video.png"
+        alt="Video zum Konzept"
+      >
+    </div>
 
     <h2 class="mt-20 m-auto max-w-screen-xl text-2xl font-serif">
       Unsere Biere
