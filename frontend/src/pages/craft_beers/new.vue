@@ -28,7 +28,9 @@
       <CraftBeerDetail
         :craft-beer="craftBeer"
         :craft-beer-types="craftBeerTypes"
+        :breweries="breweries"
         :preview="true"
+        :fruits-selected="craftBeer.flavors?.length"
       />
     </div>
 
@@ -42,6 +44,7 @@
           :craft-beer="craftBeer"
           :craft-beer-types="craftBeerTypes"
           :preview="true"
+          :fruits-selected="craftBeer.flavors?.length"
         />
       </div>
     </div>
@@ -57,9 +60,12 @@ import CraftBeerView from '@/components/CraftBeer/View.vue';
 import CraftBeerDetail from '@/components/CraftBeer/Detail.vue';
 import Repository from '@/repositories/index';
 import CraftBeerForm from '@/components/CraftBeer/Form.vue';
+import { useAuth } from '@/composables/useAuth';
 
 const CraftBeerRepository = Repository.get('craftBeer');
 const CraftBeerTypeRepository = Repository.get('craftBeerType');
+const BreweryRepository = Repository.get('brewery');
+
 const HopRepository = Repository.get('hop');
 const FlavorRepository = Repository.get('flavor');
 
@@ -69,6 +75,11 @@ export default {
     CraftBeerView,
     CraftBeerDetail,
     CraftBeerForm,
+  },
+  setup() {
+    const { user } = useAuth();
+
+    return { user };
   },
   data() {
     return {
@@ -80,12 +91,14 @@ export default {
         international_bitterness_unit: null,
         alcohol_volume: null,
         price: null,
-        flavors: null,
+        flavors: [],
         color: null,
         craft_beer_type_id: null,
+        brewery_id: this.user?.account_id,
       },
       craftBeerTypes: [],
       hops: [],
+      breweries: [],
       flavors: [],
       errors: [],
       craftBeerDetailView: true,
@@ -111,6 +124,11 @@ export default {
       .then((response) => {
         this.flavors = response.data;
       });
+
+    BreweryRepository.get()
+      .then((response) => {
+        this.breweries = response.data;
+      });
   },
   methods: {
     createCraftBeer() {
@@ -128,7 +146,7 @@ export default {
       [this.craftBeer.craft_beer_image] = event.target.files;
     },
     updateCraftBeer(craftBeer) {
-      this.craftBeer = craftBeer;
+      this.craftBeer = { ...this.craftBeer, ...craftBeer };
     },
   },
 };

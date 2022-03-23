@@ -85,6 +85,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_22_213432) do
     t.index ["name"], name: "index_craft_beers_on_name", unique: true
   end
 
+  create_table "crowd_brews", force: :cascade do |t|
+    t.date "producing_at"
+    t.date "crowd_brew_until"
+    t.date "crowd_brew_from"
+    t.date "estimated_delivery_date"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "customers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

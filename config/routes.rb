@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      resources :crowd_brews
       resources :craft_beers, only: %w[index get create]
       resources :craft_beer_types, only: %w[index]
       resources :hops, only: %w[index]

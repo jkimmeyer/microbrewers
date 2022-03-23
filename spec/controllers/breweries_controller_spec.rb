@@ -13,13 +13,13 @@ RSpec.describe Api::V1::BreweriesController do
           description: brewery.description,
           id: brewery.id,
           name: brewery.name,
+          first_name: nil,
+          last_name: nil,
+          phone: nil,
           ust_id: brewery.ust_id,
           created_at: JSON.parse(response.body)[0]["created_at"],
           updated_at: JSON.parse(response.body)[0]["updated_at"],
           logo: JSON.parse(response.body)[0]["logo"],
-          phone: nil,
-          first_name: nil,
-          last_name: nil,
         }].as_json,
       )
     end
