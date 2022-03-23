@@ -8,6 +8,7 @@
         <CraftBeerListView
           :craft-beer="craftBeer"
           :craft-beer-types="craftBeerTypes"
+          :crowd-brew="index < 1 ? crowdBrew : null"
         />
       </li>
     </ul>
@@ -35,6 +36,13 @@ export default {
     return {
       craftBeers: [],
       craftBeerTypes: [],
+      crowdBrew: {
+        producingAt: new Date('2022-04-01'),
+        crowdBrewUntil: new Date('2022-03-29'),
+        crowdBrewFrom: new Date('2022-03-01'),
+        amount: 800,
+        estimatedDeliveryDate: new Date('2022-05-01'),
+      },
     };
   },
   mounted() {

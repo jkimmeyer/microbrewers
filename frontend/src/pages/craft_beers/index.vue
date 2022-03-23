@@ -13,6 +13,7 @@
           <CraftBeerView
             :craft-beer="craftBeer"
             :craft-beer-types="craftBeerTypes"
+            :breweries="breweries"
             @add-to-cart="addToCart"
           />
         </div>
@@ -30,6 +31,7 @@ import { useCart } from '@/composables/useCart';
 
 const CraftBeerRepository = Repository.get('craftBeer');
 const CraftBeerTypeRepository = Repository.get('craftBeerType');
+const BreweryRepository = Repository.get('brewery');
 
 export default {
   name: 'CraftBeersIndex',
@@ -48,6 +50,7 @@ export default {
     return {
       craftBeers: [],
       craftBeerTypes: [],
+      breweries: [],
     };
   },
   mounted() {
@@ -58,6 +61,10 @@ export default {
     CraftBeerTypeRepository.get()
       .then((response) => {
         this.craftBeerTypes = response.data;
+      });
+    BreweryRepository.get()
+      .then((response) => {
+        this.breweries = response.data;
       });
   },
 };

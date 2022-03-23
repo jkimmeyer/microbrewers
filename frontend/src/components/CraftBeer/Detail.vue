@@ -10,7 +10,7 @@
         </div>
         <div class="flex justify-between">
           <div class="text-xl">
-            {{ user?.brewery || 'Brauerei' }}
+            {{ breweryName || 'Brauerei' }}
           </div>
         </div>
       </div>
@@ -18,8 +18,28 @@
       <div class="relative z-10 w-320 flex items-center justify-center">
         <img
           v-if="imageUrl"
-          class="text-center"
+          class="text-center z-30 h-320 max-w-320"
           :src="imageUrl"
+        >
+        <img
+          v-if="fruitsSelected >= 1 && craftBeer.name.length <= 8"
+          class="absolute z-20 right-4 bottom-0 w-32"
+          src="@/assets/grapefruit.png"
+        >
+        <img
+          v-if="fruitsSelected >= 1 && craftBeer.name.length > 8"
+          class="absolute z-20 right-4 bottom-0 w-32"
+          src="@/assets/zimt.png"
+        >
+        <img
+          v-if="fruitsSelected >= 2 && craftBeer.name.length <= 8"
+          class="absolute z-20 left-14 w-32"
+          src="@/assets/orange.png"
+        >
+        <img
+          v-if="fruitsSelected >= 2 && craftBeer.name.length > 8"
+          class="absolute z-20 left-14 w-32"
+          src="@/assets/zitrone.png"
         >
         <div
           class="absolute bg-saffron top-24 -bottom-8 left-8 right-8 -z-10 rounded-4xl blur-2xl"
@@ -84,7 +104,10 @@
           <strong>{{ productionDate || '04.04.22' }}</strong>
         </div>
 
-        <AddToCart @add-to-cart="$emit('add-to-cart', {$payload, craftBeer})" />
+        <AddToCart
+          v-if="!preview"
+          @add-to-cart="$emit('add-to-cart', {$payload, craftBeer})"
+        />
       </div>
     </div>
   </div>
@@ -119,6 +142,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    fruitsSelected: {
+      type: Number,
+      default: 3,
+    },
+    breweries: {
+      type: Array,
+      default: () => [],
+    },
   },
   setup() {
     const { user } = useAuth();
@@ -134,6 +165,10 @@ export default {
     craftBeerTypeName() {
       return this.craftBeerTypes
         .find((craftBeerType) => craftBeerType.id === this.craftBeer.craft_beer_type_id)?.name;
+    },
+    breweryName() {
+      return this.breweries
+        .find((brewery) => brewery.id === this.craftBeer.breweryId)?.name;
     },
   },
   watch: {

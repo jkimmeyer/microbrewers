@@ -28,7 +28,9 @@
       <CraftBeerDetail
         :craft-beer="craftBeer"
         :craft-beer-types="craftBeerTypes"
+        :breweries="breweries"
         :preview="true"
+        :fruits-selected="craftBeer.flavors?.length"
       />
     </div>
 
@@ -42,6 +44,7 @@
           :craft-beer="craftBeer"
           :craft-beer-types="craftBeerTypes"
           :preview="true"
+          :fruits-selected="craftBeer.flavors?.length"
         />
       </div>
     </div>
@@ -61,6 +64,8 @@ import { useAuth } from '@/composables/useAuth';
 
 const CraftBeerRepository = Repository.get('craftBeer');
 const CraftBeerTypeRepository = Repository.get('craftBeerType');
+const BreweryRepository = Repository.get('brewery');
+
 const HopRepository = Repository.get('hop');
 const FlavorRepository = Repository.get('flavor');
 
@@ -86,13 +91,14 @@ export default {
         international_bitterness_unit: null,
         alcohol_volume: null,
         price: null,
-        flavors: null,
+        flavors: [],
         color: null,
         craft_beer_type_id: null,
         brewery_id: this.user?.account_id,
       },
       craftBeerTypes: [],
       hops: [],
+      breweries: [],
       flavors: [],
       errors: [],
       craftBeerDetailView: true,
@@ -117,6 +123,11 @@ export default {
     FlavorRepository.get()
       .then((response) => {
         this.flavors = response.data;
+      });
+
+    BreweryRepository.get()
+      .then((response) => {
+        this.breweries = response.data;
       });
   },
   methods: {

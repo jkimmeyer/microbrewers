@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     buttonClasses() {
-      return this.primary ? 'bg-saffron' : 'border border-inset border-oxfordBlue';
+      return this.primary ? 'bg-saffron hover:bg-oxfordBlue hover:text-white' : 'border border-inset border-oxfordBlue hover:bg-oxfordBlue hover:text-white';
     },
   },
 };
