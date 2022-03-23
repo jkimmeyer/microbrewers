@@ -30,20 +30,22 @@ describe('Craft Beer Index', () => {
         body: [
           {
             id: 1,
-            created_at: "2022-03-08T15:31:21.938Z",
-            updated_at: "2022-03-08T16:49:07.271Z",
-            description: "Finne ist eine neue Craft Beer Brauerei in Münsters Kreuzviertel. Wir brauen Klassiker, Kreativbiere \u0026 saisonale Spezialitäten aus besten Bio-Zutaten.",
-            name: "Finne Brauerei",
+            created_at: '2022-03-08T15:31:21.938Z',
+            updated_at: '2022-03-08T16:49:07.271Z',
+            description: 'Finne ist eine neue Craft Beer Brauerei in Münsters Kreuzviertel. Wir brauen Klassiker, Kreativbiere \u0026 saisonale Spezialitäten aus besten Bio-Zutaten.',
+            name: 'Finne Brauerei',
             ust_id: null,
             first_name: null,
             last_name: null,
             phone: null,
             logo: null,
-            address: { street: "Kirchfeldstr.", house_number: 1, postal_code: 40215, city: "Düsseldorf", country: null }
-          }
-        ]
-      }
-    )
+            address: {
+              street: 'Kirchfeldstr.', house_number: 1, postal_code: 40215, city: 'Düsseldorf', country: null,
+            },
+          },
+        ],
+      },
+    );
 
     cy.intercept('https://api.mapbox.com/**/*');
     cy.intercept('https://events.mapbox.com/**/*');
